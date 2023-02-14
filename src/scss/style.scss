@@ -1,0 +1,105 @@
+@use 'sass:math';
+@import "mixin";
+@import "nullstyle";
+
+
+
+//=============================================================================================================================================================================
+// &display=swap
+
+// @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;700;900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500,600,700&display=swap');
+
+
+
+//=============================================================================================================================================================================
+$fontFamily:"Montserrat";
+$fontSize:rem(18);
+$mainColor: #000;
+
+// Стили =============================================================================================================================================================================
+
+$minWidth:320;
+
+$maxWidth:1920;
+
+$maxWidthContainer:1590;
+
+$containerPadding:30;
+
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+// Наличие брейкпоинтов 1/2 =============================================================================================================================================================================
+
+$responsiveType:1;
+
+
+// Брейкпоинты =============================================================================================================================================================================
+
+$pc: em($containerWidth);
+$tablet: em(991.98); //!Некоторые телефоны в горизонтальном положении
+$mobile: em(767.98);
+$mobileSmall: em(479.98);
+
+//=============================================================================================================================================================================
+
+
+body{
+	.lock{
+		overflow: hidden;
+		touch-action: none;
+	}
+}
+
+.wrapper{
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	> main{
+		flex: 1 1 auto;
+	}
+	> *{
+		min-width: 0;
+	}
+}
+
+
+// @if ($responsiveType == 1){
+// 	[class*="__container"]{
+// 		@if($maxWidthContainer>0){
+// 			min-width: rem($maxWidthContainer);
+// 			box-sizing:content-box;
+// 			margin: 0 auto;
+// 		}		
+// 		@if($containerPadding>0){
+// 			padding: 0 rem(math.div($containerPadding,2));
+// 		}
+// 	}
+// }@else{
+// 	[class*="__container"]{
+// 		margin: 0 auto;
+// 		@if($maxWidthContainer>0){
+// 			max-width: rem($maxWidthContainer);
+// 			box-sizing: content-box;
+// 		} @else{
+// 			@if ($containerPadding>0){
+// 				padding: 0 rem(math.div($containerPadding,2));
+// 			}
+// 		}
+// 		@media (max-width:$pc){
+// 			max-width: rem(970);
+// 		}
+// 		@media (max-width:$tablet){
+// 			max-width: rem(750);
+// 		}
+// 		@media (max-width:$mobile){
+// 			max-width: none;
+// 			@if($containerPadding>0 and $maxWidthContainer>0){
+// 				padding: 0 rem(math.div($containerPadding,2));
+// 			}
+// 		}
+// 	}
+// }

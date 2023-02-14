@@ -1,0 +1,41 @@
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display:regular,500,600,700,800,900,italic,500italic,600italic,700italic,800italic,900italic);
+
+
+@font-face {
+  font-family: 'icons';
+  src:
+    url('/fonts/icons.ttf') format('truetype'),
+    url('/fonts/icons.woff') format('woff'),
+    url('/fonts/icons.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="_icon-"]::before, [class*=" _icon-"]::before {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+._icon-arrow_left:before {
+  content: "\e900";
+}
+._icon-arrow_right:before {
+  content: "\e901";
+}
+._icon-down:before {
+  content: "\e902";
+}
+._icon-logo:before {
+  content: "\e903";
+}
