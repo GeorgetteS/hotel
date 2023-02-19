@@ -6,7 +6,8 @@ function Booking({ children }) {
 
 	const refOne = useRef(null)
 	const refTwo = useRef(null)
-
+	// const forCloseAdultMenu = useRef(null)
+	// const forCloseChildMenu = useRef(null)
 
 	const [showQuests, setShowQuests] = useState(false)
 	const [showChild, setShowchild] = useState(false)
@@ -17,36 +18,48 @@ function Booking({ children }) {
 
 
 
-	useEffect(() => {
-		document.addEventListener('click', hideOnClickOutside )
-	}, [])
+	// useEffect(() => {
+	// 	// setDateValue(format(new Date(), 'MM/dd/yyyy'))
+	// 	document.addEventListener('keyup', hideOnEscape, true)
+	// 	document.addEventListener('click', hideOnClickOutside, true)
+	// }, [])
 
+	// const hideOnEscape = (e) => {
+	// 	if (e.key === 'Escape') {
+	// 		showQuests(false)
+	// 		showChild(false)
+	// 	}
+	// }
 
+	// const hideOnClickOutside = (e) => {
+	// 	if (forCloseAdultMenu.current && !forCloseAdultMenu.current.contains(e.target)) {
+	// 		showQuests(false)
+	// 	}
+	// 	if (refTwo.current && !refTwo.current.contains(e.target)) {
+	// 		showChild(false)
+	// 	}
+	// }
 
 	const addChild = (e) => {
-		// console.log(e.target)
-		// console.log(refOne.current)
-		if(e.target === refTwo.current){
+		if (e.target === refTwo.current) {
 			return
-		//  setShowchild()
-		 return
 		}
-		if(childArr.length === 4){
+		if (childArr.length === 4) {
 			setShowChildList(prev => !prev)
 		}
-		setChildArr((prev) => [...prev, {value:e.target.innerHTML, id: prev.length }])
+		setChildArr((prev) => [...prev, { value: e.target.innerHTML, id: prev.length }])
 	}
 
-	function deleteChild(id){
-		if(childArr.length === 5){
+
+	function deleteChild(id) {
+		if (childArr.length === 5) {
 			setShowChildList(prev => !prev)
 		}
-		setChildArr((prev) =>  prev.filter((item) =>{
+		setChildArr((prev) => prev.filter((item) => {
 			return item.id !== id
 		})
 		)
-			// console.log(childArr)
-
+		// console.log(childArr)
 	}
 
 	const handleQuestsMenu = () => {
@@ -60,7 +73,7 @@ function Booking({ children }) {
 	const changeInputValue = (e) => {
 		// console.log(refOne.current)
 
-		if(e.target === refOne.current){
+		if (e.target === refOne.current) {
 			return
 		}
 
@@ -71,22 +84,7 @@ function Booking({ children }) {
 
 	}
 
-	const hideOnClickOutside = (e)=>{
 
-		console.log(refOne.current)
-		console.log(e.target)
-		console.log(showQuests)
-
-		if(showQuests){
-			if(e.target !== refOne){
-				// setShowQuests(false)
-			}
-		}
-		// if(e.target !== refTwo){
-
-		// 	setShowchild(false)
-		// }
-	}
 
 	return (
 		<main className="booking">
@@ -127,26 +125,28 @@ function Booking({ children }) {
 											<input type="text" value={questsInputValue} readOnly />
 											<div className="quest-adult__icon quests-icon"><img src="./img/person.svg" alt="" /></div>
 											<span className={`triangle ${showQuests ? 'active' : ''}`}></span>
-										
-												<ul className={`quests-adult__list quests-list ${showQuests ? 'active' : ''}`} onClick={changeInputValue} ref={refOne}>
-													<li className="quests-list__item">1 Взрослый</li>
-													<li className="quests-list__item">2 Взрослых</li>
-													<li className="quests-list__item">3 Взрослых</li>
-													<li className="quests-list__item">4 Взрослых</li>
-													<li className="quests-list__item">5 Взрослых</li>
-													<li className="quests-list__item">6 Взрослых</li>
-													<li className="quests-list__item">7 Взрослых</li>
-												</ul>
-										
+
+
+											<ul className={`quests-adult__list quests-list ${showQuests ? 'active' : ''}`} onClick={changeInputValue} ref={refOne}>
+												<li className="quests-list__item">1 Взрослый</li>
+												<li className="quests-list__item">2 Взрослых</li>
+												<li className="quests-list__item">3 Взрослых</li>
+												<li className="quests-list__item">4 Взрослых</li>
+												<li className="quests-list__item">5 Взрослых</li>
+												<li className="quests-list__item">6 Взрослых</li>
+												<li className="quests-list__item">7 Взрослых</li>
+											</ul>
+
+
 										</div>
 									</div>
 
 									<div className="form-quests__item ">
 
-										<div className={`quests-child ${showChildList ? '' : 'display-none'}`}  onClick={handleChildsMenu}>
+										<div className={`quests-child ${showChildList ? '' : 'display-none'}`} onClick={handleChildsMenu}>
 											{/* <input type="text" readOnly placeholder="Добавить детей" /> */}
 
-											 <div className="quests-child__input booking-input booking-input_padding">
+											<div className="quests-child__input booking-input booking-input_padding">
 												<input type="text" readOnly placeholder="Добавить детей" />
 												{/* <input type="text" readOnly placeholder="Добавить детей" />
 												<h5 className="form-quests__title">Размещение в номере</h5>
@@ -155,7 +155,7 @@ function Booking({ children }) {
 
 												{/* <input type="text" readOnly placeholder="Добавить детей" /> */}
 												<span className="quests-child__icon quests-icon"></span>
-												<ul className={`quests-child__list quests-list quests-list_low-height ${showChild ? 'active' : ''}`} ref = {refTwo} onClick={addChild}>
+												<ul className={`quests-child__list quests-list quests-list_low-height ${showChild ? 'active' : ''}`} ref={refTwo} onClick={addChild}>
 													<li className="quests-list__item">Ребенок до 1 года</li>
 													<li className="quests-list__item">Ребенок от  1 до 3 лет</li>
 													<li className="quests-list__item">Ребенок от 3 до 10 лет</li>
@@ -166,7 +166,7 @@ function Booking({ children }) {
 										</div>
 										{childArr.map((item) => {
 											return (
-												<Kid key={item.id} id = {item.id} deleteKid={(id) => deleteChild(id)} value={item.value} />
+												<Kid key={item.id} id={item.id} deleteKid={(id) => deleteChild(id)} value={item.value} />
 											)
 										})}
 										{/* <div className="booking-input booking-input_padding form-quests__kid">

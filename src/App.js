@@ -17,11 +17,13 @@ const roomsArr = [
 			'./img/rooms/room6.jpg',
 
 		],
+		
 		icons: [
 			'./img/snowflake.svg',
 			'./img/tv.svg',
 			'./img/hairdryer.svg',
 		],
+
 		countOfQuests: 4,
 	},
 	{

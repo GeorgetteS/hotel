@@ -340,6 +340,7 @@ main {
 		position: relative;
 		align-items: center;
 		@include adaptiv-value("row-gap", 25, 15);
+		// transition: all 0.3s ease 0s;
 
 		&:nth-child(2) {
 			border-right: 0.5px solid rgba(255, 255, 255, 0.15);
@@ -358,11 +359,26 @@ main {
 			border-bottom: 8px solid #fff;
 			border-left: 5px solid transparent;
 			border-right: 5px solid transparent;
+			transition: all 0.3s ease 0s;
 
 
 		}
+		&.active{
+
+			&:before{
+				transform: translate(-50%, 0) rotate(180deg) ;
+
+			} 
+			}
 
 	}
+
+// .quests.active{
+// 	transition: all 0.3s ease 0s;
+// 	&::before{
+// 		transform: translate(-180deg) !important;
+// 	}
+// }
 
 	&__search {
 		height: 72px;
@@ -410,6 +426,249 @@ main {
 
 }
 
+//=============================================================================================================================================================================
+
+
+.quest-select {
+	opacity: 0;
+	cursor: auto;
+	// height: auto;
+	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+	position: absolute;
+	top: -105%;
+	right: 0%;
+	z-index: 5;
+	width: 285px;
+	max-height: 350px;
+	overflow: auto;
+	background: #fff;
+	padding: 20px 15px 0 15px;
+	display: flex;
+	border-radius: 2px;
+	transition: all 0.3s ease 0s;
+	pointer-events: none;
+
+	&.active {
+		opacity: 1;
+		top: -135%;
+		pointer-events: all;
+
+	}
+
+	&__body {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	&__title {
+		margin-bottom: 15px;
+		font-size: 20px;
+	}
+
+	&__control {
+		padding: 20px 0 10px 0;
+		border-top: 1px solid rgba(0, 0, 0, 0.3);
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__finish {
+		padding: 7px 12px;
+		font-size: 16px;
+		background: rgba(0, 0, 0, 0.3);
+		border-radius: 1px;
+	}
+}
+
+.room-select {
+	padding: 20px 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.3);
+	display: flex;
+	flex-direction: column;
+	row-gap: 17px;
+
+	&__row {
+		width: 100%;
+		display: flex;
+		column-gap: 10px;
+
+
+	}
+
+	&__column {
+		display: flex;
+		flex: 0 1 50%;
+		flex-direction: column;
+		row-gap: 12px;
+	}
+
+	&__input {
+		cursor: auto;
+
+		text-align: center;
+		width: 100%;
+		padding: 10px 0px;
+		border: 1px solid #000;
+		height: auto;
+		background: none;
+		font-size: 16px;
+
+	}
+
+	&__selector {
+		position: relative;
+
+		button {
+			position: absolute;
+			background: rgba(0, 0, 0, 0.15);
+			border-radius: 10%;
+			width: 20px;
+			height: 20px;
+			top: 50%;
+			transform: translateY(-50%);
+
+			&::before {
+				content: '';
+				position: absolute;
+				width: 10px;
+				height: 1.5px;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				background: rgba(0, 0, 0, 0.5);
+			}
+		}
+
+		.plus {
+			right: 10px;
+
+			&::after {
+				content: '';
+				position: absolute;
+				width: 1.5px;
+				height: 10px;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+
+				background: rgba(0, 0, 0, 0.5);
+			}
+		}
+
+		.minus {
+			left: 10px;
+		}
+	}
+
+	&__title {
+		// margin-bottom: 10px;
+		font-size: 12px;
+		text-transform: uppercase;
+		font-weight: 500;
+
+	}
+
+	&__subtitle {
+		font-size: 12px;
+		color: rgba(0, 0, 0, 0.5);
+	}
+}
+
+.kid-select {
+	display: flex;
+	flex-direction: column;
+	font-size: 12px;
+	row-gap: 10px;
+
+	&__age {
+		padding-left: 3px;
+	}
+
+	&__column {
+		display: flex;
+		row-gap: 12px;
+
+		flex-direction: column;
+	}
+
+	&__control {
+		position: relative;
+		// border-radius: 2px;
+		// padding: 5px 02px;
+		// border: 1px solid rgba(0, 0, 0, 0.7);
+		// padding-bottom: 10px;
+	}
+
+	&__view {
+		border-radius: 2px;
+		padding: 7px 5px;
+		border: 1px solid rgba(0, 0, 0, 0.7);
+		font-size: 14px;
+
+		.triangle {
+			border-top: 5px solid rgb(157, 163, 190);
+			right: 10px;
+		}
+	}
+
+	&__list {
+		// height: 100px;
+		box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+		height: 0;
+		background: #fff;
+		border: 1px solid black;
+
+		z-index: 5;
+		position: absolute;
+		top: 90%;
+		width: 100%;
+		overflow: hidden;
+		// box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+		transition: all 0.3s ease 0s;
+		pointer-events: none;
+		visibility: hidden;
+
+		li {
+			margin: 0 5px;
+			padding: 5px;
+			transition: all 0.1s ease 0s;
+			font-size: 14px;
+			cursor: pointer;
+
+			&:hover {
+				// background: darken($color: #fff, $amount: 10%);
+				background: rgba(157, 163, 190, 0.75);
+			}
+
+			&:first-child {
+				margin-top: 5px;
+			}
+
+			&:last-child {
+				margin-bottom: 5px;
+
+			}
+		}
+
+		&.active {
+			height: 83px;
+			top: 100%;
+			visibility: visible;
+			// padding: 10px;
+			pointer-events: all;
+		}
+
+	}
+
+
+}
+
+
+//=============================================================================================================================================================================
+
+
 @media (min-width:1120px) {
 	.fullscreen__down-btn {
 		display: block;
@@ -418,6 +677,17 @@ main {
 }
 
 @media (max-width:530px) {
+	.quest-select {
+		width: 100%;
+		// right: 50%;
+		top: 5%;
+		// right: 2%;
+		// transform: translateX();
+		&.active{
+			top: -5%;
+		}
+	}
+
 
 
 	.fullscreen__body {
@@ -451,7 +721,7 @@ main {
 	}
 
 	.search-form {
-		background: rgba(255, 255, 255, 0.65);
+		// background: rgba(255, 255, 255, 0.65);
 		max-width: 300px;
 		width: 100%;
 	}
@@ -460,9 +730,11 @@ main {
 		display: block;
 		min-width: 250px;
 
-		input {
-			height: 100px;
-		}
+	}
+
+	&__input {
+		height: 100px;
+
 	}
 
 	.search-form__search {
@@ -548,7 +820,7 @@ main {
 	font-weight: 500;
 
 	// @include adaptiv-value("padding-top", 50, 30);
-	@include adaptiv-value("padding-bottom",200, 15);
+	@include adaptiv-value("padding-bottom", 200, 15);
 
 
 	// min-height: 100vh;
@@ -719,8 +991,9 @@ main {
 		position: relative;
 		cursor: auto;
 		box-shadow: none;
-		&:hover{
-		box-shadow: none;
+
+		&:hover {
+			box-shadow: none;
 
 		}
 
@@ -741,6 +1014,7 @@ main {
 		transform: translateY(-50%);
 
 		background: transparent;
+
 		&::before,
 		&::after {
 			content: '';
@@ -762,7 +1036,7 @@ main {
 			transition: all 0.3s ease 0s;
 			background: rgba(0, 0, 0, 0.8);
 			transform: rotate(45deg);
-			
+
 
 		}
 
@@ -849,7 +1123,8 @@ main {
 		display: flex;
 		flex-direction: column;
 	}
-	&.display-none{
+
+	&.display-none {
 		display: none;
 	}
 }
@@ -1315,7 +1590,7 @@ main {
 	height: 100%;
 	z-index: 5;
 	background: rgba(157, 163, 190, 0.65);
-
+	backdrop-filter: blur(1px);
 	opacity: 0;
 	transition: all 0.5s ease 0s;
 

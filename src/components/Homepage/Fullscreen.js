@@ -7,17 +7,15 @@ import { addDays } from 'date-fns';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import ru from 'date-fns/locale/ru';
-
+import QuestSelect from './QuestSelect';
 
 
 function Fullscreen() {
 
 	const refOne = useRef(null)
+	const refTwo = useRef(null)
 
 	const [openCalendar, setOpenCalendar] = useState(false)
-
-
-	// const [rangeCalendar, setRangeCalendar] = useState([])
 	const [range, setRange] = useState([
 		{
 			startDate: new Date(),
@@ -26,7 +24,8 @@ function Fullscreen() {
 		}
 	]
 	)
-
+	const [showQuestSelector, setShowQuestSelector] = useState(false)
+	const [countOfQuests, setCountOfQuests] = useState(1)
 
 
 
@@ -39,22 +38,23 @@ function Fullscreen() {
 	const hideOnEscape = (e) => {
 		if (e.key === 'Escape') {
 			setOpenCalendar(false)
+			setShowQuestSelector(false)
 		}
 	}
 
 
 
 	const hideOnClickOutside = (e) => {
-		console.log(refOne.current)
-		console.log(e.target)
-
 		if (refOne.current && !refOne.current.contains(e.target)) {
 			setOpenCalendar(false)
 		}
+		if (refTwo.current && !refTwo.current.contains(e.target)) {
+			setShowQuestSelector(false)
+		}else if(showQuestSelector && refTwo.current === e.target){
+			setShowQuestSelector(false)
+		}
 
 	}
-
-
 
 
 
@@ -84,14 +84,22 @@ function Fullscreen() {
 							className='calendarElement'
 							direction='horizontal'
 							// direction='vertical'
-							showDateDisplay = {false}
-							showMonthArrow = {false}
-							showPreview = {false}
-							showMonthAndYearPickers = {false}
-							locale = {ru}
+							showDateDisplay={false}
+							showMonthArrow={false}
+							showPreview={false}
+							showMonthAndYearPickers={false}
+							locale={ru}
 						/>}
 					</div >
-					<div className="fullscreen__search-form search-form">
+					<div className="fullscreen__search-form search-form" 	>
+						<div ref={refTwo}>
+							{ <QuestSelect
+								handleSelector={() => setShowQuestSelector(false)}
+								changeCountOfQuests={(item) => setCountOfQuests(item)}
+								className = {showQuestSelector && 'active'}
+							/>}
+						</div>
+
 						<div className="search-form__body">
 							<div className="search-form__form" >
 								<div className="search-form__arrival search-form__item arrival">
@@ -107,16 +115,17 @@ function Fullscreen() {
 								<div className="search-form__departure search-form__item departure">
 									<div className="departure__input">
 										<input type="text" readOnly
-										onClick={() => setOpenCalendar((prev) => !prev)}
-										value={`${format(range[0].endDate, 'MM/dd/yyyy')}`}
-										className="arrival__date" />
-										</div>
+											onClick={() => setOpenCalendar((prev) => !prev)}
+											value={`${format(range[0].endDate, 'MM/dd/yyyy')}`}
+											className="arrival__date" />
+									</div>
 									<div className="search-form__label">Выезд</div>
 
 								</div>
-								<div className="search-form__quests search-form__item quests">
-									<input type="text" readOnly value="1" className="quests counter" />
+								<div className={`search-form__quests search-form__item quests ${showQuestSelector ? 'active' :  ''}`} onClick={() => setShowQuestSelector(prev => !prev)}>
+									<input type="text" readOnly value={countOfQuests} className="quests counter" />
 									<div className="search-form__label">Гости</div>
+
 
 								</div>
 							</div >

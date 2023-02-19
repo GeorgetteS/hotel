@@ -1,6 +1,6 @@
-import Fullscreen from "../components/Fullscreen";
-import About from "../components/About";
-import Comfort from "../components/Comfort";
+import Fullscreen from "../components/Homepage/Fullscreen";
+import About from "../components/Homepage/About";
+import Comfort from "../components/Homepage/Comfort";
 
 
 function Homepage() {
