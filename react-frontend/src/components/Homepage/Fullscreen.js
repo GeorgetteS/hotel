@@ -1,4 +1,4 @@
-import SearchForm from './HomePageForm/SearchForm';
+import SearchForm from './SearchForm/SearchForm';
 
 function Fullscreen() {
   return (
@@ -22,7 +22,6 @@ function Fullscreen() {
               </div>
             </div>
           </div>
-
           <SearchForm />
         </div>
         <button className="fullscreen__down-btn _icon-down"></button>

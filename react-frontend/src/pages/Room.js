@@ -2,8 +2,12 @@ import { useParams } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 
-import RoomInfo from '../components/Bookingpage/RoomPage/RoomInfo';
-import RoomList from '../components/Bookingpage/RoomPage/RoomList';
+// import RoomInfo from '../components/Bookingpage/RoomPage/RoomInfo';
+// import RoomList from '../components/Bookingpage/RoomPage/RoomList';
+
+import RoomList from '../components/RoomPage/RoomList';
+
+import RoomInfo from '../components/RoomPage/RoomInfo';
 
 // [
 // 	{

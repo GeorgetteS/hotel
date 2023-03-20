@@ -4,11 +4,13 @@ import addDays from 'date-fns/addDays';
 import selectRoom from '../../utils/selectRoom';
 
 const initialState = {
-  date: {
-    startDate: JSON.stringify(new Date()),
-    endDate: JSON.stringify(addDays(new Date(), 1)),
-    key: 'selection',
-  },
+  date: [
+    {
+      startDate: Date.now(),
+      endDate: addDays(new Date(), 1).getTime(),
+      key: 'selection',
+    },
+  ],
 
   rooms: [
     {
@@ -27,7 +29,6 @@ export const bookingSlice = createSlice({
   reducers: {
     addAdult: (state, action) => {
       const findRoom = selectRoom(state, action);
-      // if(action.payload.countOfAdults )
       findRoom.countOfAdults = findRoom.countOfAdults + action.payload.countOfAdults;
     },
     removeAdult: (state, action) => {
@@ -55,20 +56,12 @@ export const bookingSlice = createSlice({
           (item) => item.childId !== action.payload.childId,
         );
       }
-
-      // findRoom.children = findRoom.children.filter(item => item.childId !== action.payload.childId)
     },
     setChild: (state, action) => {
       const findRoom = selectRoom(state, action);
       const findChild = findRoom.children.find((item) => item.childId === action.payload.childId);
-      // console.log(action.payload, 'payload');
-      // console.log(findChild, 'state');
       findChild.ageValue = action.payload.ageValue;
       findChild.error = false;
-      // findRoom.children.find(item => item.childId === action.payload.childId).ageValue = action.payload.ageValue
-
-      // findRoom.children[action.payload.childId].ageValue = action.payload.ageValue
-      // findRoom.children[action.payload.childId].error = false
     },
     setChildError: (state) => {
       state.rooms.forEach((room) => {
@@ -92,10 +85,14 @@ export const bookingSlice = createSlice({
       }, 0);
       state.countOfQuests = countOfQuests;
     },
-    // clearChildrem: (state, action) => {
-    // 	const findRoom = selectRoom(state, action)
-    // 	findRoom.children = findRoom.children.fliter(item => item.childId !== action.payload.childId)
-    // }
+
+    setRange: (state, action) => {
+      state.date[0] = {
+        startDate: action.payload.startDate,
+        endDate: action.payload.endDate,
+        key: action.payload.key,
+      };
+    },
   },
 });
 
@@ -110,6 +107,7 @@ export const {
   removeRoom,
   setAdult,
   setCountOfQuests,
+  setRange,
 } = bookingSlice.actions;
 
 export default bookingSlice.reducer;

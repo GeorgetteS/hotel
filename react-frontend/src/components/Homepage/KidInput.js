@@ -1,45 +1,53 @@
-import { useRef, useState } from "react"
+import { useContext, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
+import { setChild } from '../../redux/booking/bookingSlice';
+import { ChildListContext } from '../../App';
 
-function KidInput({id}){
-	const [kidValue, setKidValue] = useState('Выбрать')
-	const [showKidList, setShowKidList] = useState(false)
+function KidInput({ id, isError, room, ageValue, childNumber }) {
+  const childList = useContext(ChildListContext);
 
-	const refOne = useRef(null)
+  const dispatch = useDispatch();
 
-	const changeKidValue = (e)=>{
-		console.log(e.target.innerHtml);
-		if(e.target === refOne.current){
-			return
-		}
-		setKidValue(e.target.innerHTML);
-		setShowKidList(false)
-	}
+  const [showKidList, setShowKidList] = useState(false);
+  const refOne = useRef(null);
 
-	return(
-	<div className="room-select__kid kid-select">
-	<div className="kid-select__column" >
-		<div className="kid-select__age">Возраст {id + 1} ребенка</div>
-		<div className="kid-select__control" >
-			<input type="text" hidden />
-			<div className="kid-select__view" onClick={() => setShowKidList(prev => !prev)}>
-				{kidValue}
-				<span className="triangle"></span>
+  const changeKidValue = (item) => {
+    setShowKidList(false);
 
-			</div>
-			<ul className={`kid-select__list  ${showKidList ? 'active' : ''}`} ref={refOne} onClick = {changeKidValue} >
-				<li>Ребенок до 1 года</li>
-				<li>Ребенок от  1 до 3 лет</li>
-				<li>Ребенок от 3 до 10 лет</li>
-			</ul>
-		</div>
+    dispatch(setChild({ id: room, ageValue: item.ageValue, childId: id }));
+  };
 
-	</div>
-</div>
+  const findChildLabel = () => {
+    const value = ageValue ? childList.find((item) => item.ageValue === ageValue) : '';
 
-	)
+    return value;
+  };
 
+  const value = findChildLabel();
+
+  return (
+    <div className="room-select__kid kid-select">
+      <div className="kid-select__column">
+        <div className="kid-select__age">Возраст {childNumber + 1} ребенка</div>
+        <div className="kid-select__control">
+          <div className="kid-select__view" onClick={() => setShowKidList((prev) => !prev)}>
+            {value.label || 'Выбрать'}
+            <span className="triangle"></span>
+          </div>
+          <ul className={`kid-select__list  ${showKidList ? 'active' : ''}`} ref={refOne}>
+            {childList.map((item) => (
+              <li key={item.ageValue} onClick={() => changeKidValue(item)}>
+                {item.label}{' '}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {isError && <div className="kid-select__error">Укажите возраст ребенка </div>}
+      </div>
+    </div>
+  );
 }
 
-
-export default KidInput
+export default KidInput;

@@ -7,7 +7,7 @@ import {
   addChild,
   removeChild,
   removeRoom,
-} from '../../../redux/booking/bookingSlice';
+} from '../../redux/booking/bookingSlice';
 
 import KidInput from './KidInput';
 

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import { bookingSelector } from '../../../redux/booking/bookingSelector';
-import { setChildError, addRoom, setCountOfQuests } from '../../../redux/booking/bookingSlice';
+import { bookingSelector } from '../../redux/booking/bookingSelector';
+import { setChildError, addRoom, setCountOfQuests } from '../../redux/booking/bookingSlice';
 
 import QuestSelectItem from './QuestSelectItem';
 

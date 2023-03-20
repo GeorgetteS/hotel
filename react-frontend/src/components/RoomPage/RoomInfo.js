@@ -1,5 +1,5 @@
 // import Slider from "../../components/Slider";
-import Slider from '../../Slider';
+import Slider from '../Slider';
 
 const RoomInfo = ({ images, icons, quests, text, title, countOfQuests, premium }) => {
   return (
