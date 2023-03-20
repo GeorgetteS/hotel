@@ -32,6 +32,7 @@ const BookingForm = () => {
       <div className="form-booking__date form-date">
         {openCalendar && (
           <div className={'form-date__calendar'} ref={refCalendar}>
+            {' '}
             <Calendar date={date} />
           </div>
         )}

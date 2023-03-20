@@ -24,9 +24,6 @@ const SearchForm = () => {
 
   return (
     <>
-      {/* <div ref={refCalendar}>
-        {openCalendar && <Calendar date={date} className="calendarElement" />}
-      </div> */}
       <div className="fullscreen__search-form search-form">
         <div className="search-form__body">
           <div className="search-form__form">
