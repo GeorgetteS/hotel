@@ -1,5 +1,6 @@
 // import Slider from "../../components/Slider";
 import Slider from '../Slider';
+import { IconsList } from '../../components/IconsList';
 
 const RoomInfo = ({ images, icons, quests, text, title, countOfQuests, premium }) => {
   return (
@@ -25,6 +26,27 @@ const RoomInfo = ({ images, icons, quests, text, title, countOfQuests, premium }
           <Slider images={images} icons={icons} quests={quests} gallery={true} />
         </div>
         <div className="main-room__text">{text}</div>
+        {/* <div className="main-room__icons icons">
+          <div className="icons__item">
+            <div className="icons__icon">
+              <img src={icons[0].path} alt="" />
+            </div>
+            <div className="icons__label">{icons[0].label}</div>
+          </div>
+          <div className="icons__item">
+            <div className="icons__icon">
+              <img src={icons[0].path} alt="" />
+            </div>
+            <div className="icons__label">{icons[0].label}</div>
+          </div>
+          <div className="icons__item">
+            <div className="icons__icon">
+              <img src={icons[0].path} alt="" />
+            </div>
+            <div className="icons__label">{icons[0].label}</div>
+          </div>
+        </div> */}
+        <IconsList icons={icons} className={'main-room__icons'} />
         {premium && (
           <div className="main-room__premium premium-main">
             <h5 className="premium-main__title">В стоимость номера включено:</h5>
