@@ -24,7 +24,7 @@ export default function useHide(ref, initialState = false) {
       document.removeEventListener('keyup', hideOnEscape, true);
       document.removeEventListener('click', hideOnClickOutside, true);
     };
-  }, [ref]);
+  }, [isHide]);
 
   return [isHide, setHide];
 }

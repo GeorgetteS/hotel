@@ -1,4 +1,4 @@
 export default function selectRoom(state, action) {
-  const findRoom = state.rooms.find((room) => room.id === action.payload.id);
+  const findRoom = state.items.find((room) => room.id === action.payload.id);
   return findRoom;
 }

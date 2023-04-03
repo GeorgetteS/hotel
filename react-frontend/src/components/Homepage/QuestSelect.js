@@ -6,12 +6,12 @@ import { setChildError, addRoom, setCountOfQuests } from '../../redux/booking/bo
 import QuestSelectItem from './QuestSelectItem';
 
 function QuestSelect({ handleSelector, className }) {
-  const { rooms } = useSelector(bookingSelector());
+  const { items } = useSelector(bookingSelector());
 
   const dispatch = useDispatch();
 
   function closeSelector(e) {
-    if (rooms.find((room) => room.children.find((obj) => !obj.ageValue))) {
+    if (items.find((room) => room.children.find((obj) => !obj.ageValue))) {
       dispatch(setChildError());
       return;
     }
@@ -27,7 +27,7 @@ function QuestSelect({ handleSelector, className }) {
     <div className={`quest-select ${className}`}>
       <div className="quest-select__body">
         <div className="quest-select__title">Количество гостей</div>
-        {rooms.map((room, index) => {
+        {items.map((room, index) => {
           return <QuestSelectItem key={room.id} {...room} number={index} />;
         })}
         <div className="quest-select__control">

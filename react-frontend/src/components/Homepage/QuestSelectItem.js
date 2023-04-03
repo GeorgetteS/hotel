@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
 
-// import { bookingChildrenSelector, bookingSelector } from "../../../redux/booking/bookingSelector";
 import {
   addAdult,
   removeAdult,

@@ -15,7 +15,7 @@ function Room() {
 
   const { type } = useParams();
 
-  async function fetchRooms() {
+  async function fetchOneRoom() {
     try {
       setLoading(true);
       await fetch(`https://640ed1cc4ed25579dc3d72f1.mockapi.io/rooms/${type}`)
@@ -31,8 +31,7 @@ function Room() {
   }
 
   useEffect(() => {
-    fetchRooms();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchOneRoom();
   }, [type]);
 
   if (!room) {

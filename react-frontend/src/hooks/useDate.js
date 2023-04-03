@@ -43,6 +43,12 @@ export default function useDate() {
   const startDate = format(date[0].startDate, 'dd MMMM yyyy', { locale: ru });
   const endDate = format(date[0].endDate, 'dd MMMM yyyy', { locale: ru });
 
+  const startDateWithoutYear = format(date[0].startDate, 'dd MMMM', { locale: ru });
+  const endDateWithoutYear = format(date[0].endDate, 'dd MMMM', { locale: ru });
+
+  const startDateDay = format(date[0].startDate, 'EEEE', { locale: ru });
+  const endDateDay = format(date[0].endDate, 'EEEE', { locale: ru });
+
   return {
     getDate() {
       return transformToDate(range);
@@ -52,5 +58,9 @@ export default function useDate() {
     },
     startDate,
     endDate,
+    startDateWithoutYear,
+    endDateWithoutYear,
+    startDateDay,
+    endDateDay,
   };
 }

@@ -12,7 +12,7 @@ const initialState = {
     },
   ],
 
-  rooms: [
+  items: [
     {
       id: 0,
       countOfAdults: 1,
@@ -64,22 +64,22 @@ export const bookingSlice = createSlice({
       findChild.error = false;
     },
     setChildError: (state) => {
-      state.rooms.forEach((room) => {
+      state.items.forEach((room) => {
         room.children = room.children.map((obj) => (obj.ageValue ? obj : { ...obj, error: true }));
       });
     },
     addRoom: (state, action) => {
-      state.rooms.push({
+      state.items.push({
         id: action.payload,
         countOfAdults: 1,
         children: [],
       });
     },
     removeRoom: (state, action) => {
-      state.rooms = state.rooms.filter((item) => item.id !== action.payload);
+      state.items = state.items.filter((item) => item.id !== action.payload);
     },
     setCountOfQuests: (state) => {
-      const countOfQuests = state.rooms.reduce((sum, room) => {
+      const countOfQuests = state.items.reduce((sum, room) => {
         const countOfChildren = room.children.filter((item) => item.ageValue).length;
         return sum + room.countOfAdults + countOfChildren;
       }, 0);

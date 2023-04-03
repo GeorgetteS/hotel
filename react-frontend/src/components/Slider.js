@@ -29,7 +29,7 @@ function Slider({ icons, images, quests, hover, gallery }) {
           <div className="hover-slider__quests hover-quests">
             <div className="hover-quests__number">{quests}</div>
             <div className="hover-quests__icon">
-              <img src="./img/person.svg" alt="" />
+              <img src="../img/person.svg" alt="" />
             </div>
           </div>
         </div>

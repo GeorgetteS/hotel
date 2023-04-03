@@ -1,8 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Slider from './Slider';
 
 function Card({ title, text, images, icons, countOfQuests, type }) {
+  const navigate = useNavigate();
+
   return (
     <div className="gallery__room-card room-card">
       <div className="room-card__column">
@@ -22,7 +24,9 @@ function Card({ title, text, images, icons, countOfQuests, type }) {
           </div>
           <div className="room-card__text">{text}</div>
         </div>
-        <button className="room-card__btn">Проверить наличие</button>
+        <button className="room-card__btn" onClick={() => navigate(`/booking?type=${type}`)}>
+          Забронировать
+        </button>
       </div>
     </div>
   );

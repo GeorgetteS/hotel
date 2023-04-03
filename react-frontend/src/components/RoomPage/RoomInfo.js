@@ -1,8 +1,11 @@
-// import Slider from "../../components/Slider";
+import { useNavigate } from 'react-router-dom';
+
 import Slider from '../Slider';
 import { IconsList } from '../../components/IconsList';
 
-const RoomInfo = ({ images, icons, quests, text, title, countOfQuests, premium }) => {
+const RoomInfo = ({ images, icons, quests, text, title, countOfQuests, premium, id }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="room__main main-room">
       <div className="main-room__body">
@@ -17,8 +20,8 @@ const RoomInfo = ({ images, icons, quests, text, title, countOfQuests, premium }
               <span> {countOfQuests} чел.</span>
             </div>
           </div>
-          <a href="" className="main-room__link">
-            {' '}
+          // eslint-disable-next-line jsx-a11y/anchor-is-valid
+          <a href="" className="main-room__link" onClick={() => navigate(`/booking?type=${id}`)}>
             Узнать цену
           </a>
         </div>
@@ -26,26 +29,6 @@ const RoomInfo = ({ images, icons, quests, text, title, countOfQuests, premium }
           <Slider images={images} icons={icons} quests={quests} gallery={true} />
         </div>
         <div className="main-room__text">{text}</div>
-        {/* <div className="main-room__icons icons">
-          <div className="icons__item">
-            <div className="icons__icon">
-              <img src={icons[0].path} alt="" />
-            </div>
-            <div className="icons__label">{icons[0].label}</div>
-          </div>
-          <div className="icons__item">
-            <div className="icons__icon">
-              <img src={icons[0].path} alt="" />
-            </div>
-            <div className="icons__label">{icons[0].label}</div>
-          </div>
-          <div className="icons__item">
-            <div className="icons__icon">
-              <img src={icons[0].path} alt="" />
-            </div>
-            <div className="icons__label">{icons[0].label}</div>
-          </div>
-        </div> */}
         <IconsList icons={icons} className={'main-room__icons'} />
         {premium && (
           <div className="main-room__premium premium-main">

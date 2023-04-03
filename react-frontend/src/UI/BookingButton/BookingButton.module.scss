@@ -1,0 +1,13 @@
+.root {
+  width: 100%;
+  font-size: 16px;
+  line-height: 24px;
+  background: #9da3be;
+  padding: 10px;
+  color: #fff;
+  border-radius: 3px;
+  transition: background 0.1s ease 0s;
+  &:hover {
+    background: darken($color: #9da3be, $amount: 8%);
+  }
+}
