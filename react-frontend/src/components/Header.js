@@ -1,39 +1,59 @@
+import classNames from 'classnames';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+  }, [isMenuOpen]);
+
+  const handleLinkClick = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="header">
       <div className="container">
         <div className="header__body">
           <Link to="/" className="header__logo _icon-logo"></Link>
-          <nav className="header__menu menu-header">
+          <nav className={classNames('header__menu menu-header', isMenuOpen && 'active')}>
             <ul className="menu-header__list">
               <li>
-                <Link to="/rooms" className="menu-header__link">
+                <Link to="/rooms" className="menu-header__link" onClick={handleLinkClick}>
                   Номера
                 </Link>
               </li>
               <li>
-                <Link to="" className="menu-header__link">
+                <Link to="" className="menu-header__link" onClick={handleLinkClick}>
                   Об отеле
                 </Link>
               </li>
               <li>
-                <Link to="/booking" className="menu-header__link">
+                <Link to="/booking" className="menu-header__link" onClick={handleLinkClick}>
                   Бронирование
                 </Link>
               </li>
             </ul>
-          </nav>
-          <div className="header__phone phone-header">
-            <div className="phone-header__icon">
-              <img src="./img/phone.svg" alt="wrg" />
+            <div className="header__phone phone-header">
+              <div className="phone-header__icon">
+                <img src="./img/phone.svg" alt="wrg" />
+              </div>
+              <a href="tel: +74951234567" className="phone-header__number">
+                +7 (800) 005-20-23
+              </a>
             </div>
-            <a href="tel: +74951234567" className="phone-header__number">
-              +7 (800) 005-20-23
-            </a>
+          </nav>
+          <div
+            className={classNames('icon-menu', isMenuOpen && 'active')}
+            onClick={() => setIsMenuOpen((prev) => !prev)}>
+            <span></span>
           </div>
-          <div className="icon-menu"></div>
         </div>
       </div>
     </header>
