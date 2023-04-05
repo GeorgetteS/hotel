@@ -1,6 +1,6 @@
 import SearchForm from './SearchForm/SearchForm';
 
-function Fullscreen() {
+function Fullscreen({ scrollTo }) {
   return (
     <section className="fullscreen">
       <div className="fullscreen__bg">
@@ -24,7 +24,7 @@ function Fullscreen() {
           </div>
           <SearchForm />
         </div>
-        <button className="fullscreen__down-btn _icon-down"></button>
+        <button className="fullscreen__down-btn _icon-down" onClick={scrollTo}></button>
       </div>
     </section>
   );

@@ -18,7 +18,6 @@ function About() {
             </p>
           </div>
         </div>
-        {/* <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A11d57b4445efe623bfa35675d14694c26c979a110a994d0375b22b7d221f8a65&amp;source=constructor" width="100%" height="474" frameborder="0"></iframe> */}
       </div>
     </section>
   );

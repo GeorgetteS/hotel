@@ -15,11 +15,9 @@ const BookingPanel = ({ title, color, now, next, prev, onClickPrev, onClickNext 
       return;
     }
     document.addEventListener('keydown', keyDownBack);
-    // window.addEventListener('popstate', handleKeyDown);
 
     return () => {
       document.removeEventListener('keydown', keyDownBack);
-      // window.removeEventListener('popstate', handleKeyDown);
     };
   }, [prev]);
 
@@ -35,11 +33,9 @@ const BookingPanel = ({ title, color, now, next, prev, onClickPrev, onClickNext 
       return;
     }
     document.addEventListener('keydown', keyDownNext);
-    // window.addEventListener('popstate', handleKeyDown);
 
     return () => {
       document.removeEventListener('keydown', keyDownNext);
-      // window.removeEventListener('popstate', handleKeyDown);
     };
   }, [next]);
 

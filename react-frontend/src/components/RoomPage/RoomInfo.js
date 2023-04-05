@@ -20,7 +20,6 @@ const RoomInfo = ({ images, icons, quests, text, title, countOfQuests, premium, 
               <span> {countOfQuests} чел.</span>
             </div>
           </div>
-          // eslint-disable-next-line jsx-a11y/anchor-is-valid
           <a href="" className="main-room__link" onClick={() => navigate(`/booking?type=${id}`)}>
             Узнать цену
           </a>
