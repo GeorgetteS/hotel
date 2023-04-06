@@ -49,6 +49,8 @@ export default function useDate() {
   const startDateDay = format(date[0].startDate, 'EEEE', { locale: ru });
   const endDateDay = format(date[0].endDate, 'EEEE', { locale: ru });
 
+  const countOfDays = new Date(date[0].endDate - date[0].startDate) / 1000 / 60 / 60 / 24;
+
   return {
     getDate() {
       return transformToDate(range);
@@ -62,5 +64,6 @@ export default function useDate() {
     endDateWithoutYear,
     startDateDay,
     endDateDay,
+    countOfDays,
   };
 }

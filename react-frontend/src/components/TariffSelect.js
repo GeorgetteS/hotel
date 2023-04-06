@@ -16,7 +16,13 @@ const TariffSelect = ({ ratio, extraPlace, tariffIcons }) => {
   return (
     <ul className="tariffs__rooms">
       {tariffIcons.map((item, index) => (
-        <TariffOption key={index} tariffIcons={item} showButton={isOneRoom} />
+        <TariffOption
+          key={index}
+          ratio={ratio}
+          extraPlace={extraPlace}
+          tariffIcons={item}
+          showButton={isOneRoom}
+        />
       ))}
     </ul>
   );

@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import Slider from './Slider';
 
-function Card({ title, text, images, icons, countOfQuests, type }) {
+function Card({ price, title, text, images, icons, countOfQuests, type }) {
   const navigate = useNavigate();
 
   return (
@@ -19,7 +19,7 @@ function Card({ title, text, images, icons, countOfQuests, type }) {
             </Link>
             <div className="room-card__cost">
               <span className="opacity"> 1 ночь 1 гость</span>{' '}
-              <span className="no-opacity">8 999 руб.</span>{' '}
+              <span className="no-opacity">{price} руб.</span>{' '}
             </div>
           </div>
           <div className="room-card__text">{text}</div>

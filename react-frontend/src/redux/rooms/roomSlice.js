@@ -4,7 +4,7 @@ export const fetchRooms = createAsyncThunk(
   'room/fetchRooms',
   async function (_, { rejectWithValue }) {
     try {
-      const response = await fetch('https://640ed1cc4ed25579dc3d72f1.mockapi.io/rooms');
+      const response = await fetch('https://63f2529daab7d09125065aa9.mockapi.io/rooms');
 
       if (!response.ok) {
         throw new Error('Беда!');

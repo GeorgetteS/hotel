@@ -6,7 +6,6 @@
 body {
   font-family: 'Playfair Display';
   min-height: 100vh;
-  // width: 100%;
   font-feature-settings: 'pnum' on, 'lnum' on;
   &.menu-open {
     overflow: hidden;
@@ -26,7 +25,6 @@ input {
   margin: 0 auto;
   max-width: 1216px;
   padding: 0 15px;
-  // height: 100%;
 }
 
 .wrapper {
@@ -42,23 +40,16 @@ input {
   bottom: 110%;
 }
 
-// .display-none{
-// 	display: none ;
-// }
-
 //=============================================================================================================================================================================
 
 .header {
-  // visibility: hidden;
   padding: 10px 0;
   width: 100%;
   position: fixed;
   z-index: 15;
   background: #fff;
 
-  // position: absolute;
   &__body {
-    // margin: 15px 0;
     display: flex;
     align-items: center;
   }
@@ -348,12 +339,10 @@ main {
     position: relative;
     align-items: center;
     @include adaptiv-value('row-gap', 25, 15);
-    // transition: all 0.3s ease 0s;
 
     &:nth-child(2) {
       border-right: 0.5px solid rgba(255, 255, 255, 0.15);
       border-left: 0.5px solid rgba(255, 255, 255, 0.15);
-      // backdrop-filter: blur(2px);
     }
 
     &::before {
@@ -397,8 +386,6 @@ main {
     @include adaptiv-value('width', 32, 20);
     @include adaptiv-value('height', 32, 20);
 
-    // width: 10px;
-    // height: 10px;
     img {
       position: absolute;
       top: 0;
@@ -447,7 +434,6 @@ main {
 
   &::-webkit-scrollbar {
     width: 8px;
-    // border-radius: 5px;
   }
 
   &::-webkit-scrollbar-track {
@@ -580,16 +566,10 @@ main {
 
     .minus {
       left: 10px;
-
-      // &:disabled {
-      // 	opacity: 0.5;
-
-      // }
     }
   }
 
   &__title {
-    // margin-bottom: 10px;
     font-size: 12px;
     text-transform: uppercase;
     font-weight: 500;
@@ -643,7 +623,6 @@ main {
   }
 
   &__list {
-    // height: 100px;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
     height: 0;
     background: #fff;
@@ -654,7 +633,6 @@ main {
     top: 90%;
     width: 100%;
     overflow: hidden;
-    // box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease 0s;
     pointer-events: none;
     visibility: hidden;
@@ -667,7 +645,6 @@ main {
       cursor: pointer;
 
       &:hover {
-        // background: darken($color: #fff, $amount: 10%);
         background: rgba(157, 163, 190, 0.75);
       }
 
@@ -684,7 +661,6 @@ main {
       height: 83px;
       top: 100%;
       visibility: visible;
-      // padding: 10px;
       pointer-events: all;
     }
   }
@@ -692,12 +668,9 @@ main {
   &__error {
     padding: 7px 5px;
     background-color: #cc2d2d;
-    // position: absolute;
-    // margin-top: px;
     border-radius: 1px;
     position: relative;
     color: #fff;
-    // font-weight: 550;
     font-size: 14px;
 
     &::after {
@@ -731,11 +704,7 @@ main {
 
   .quest-select {
     width: 100%;
-    // right: 50%;
     top: -100%;
-
-    // right: 2%;
-    // transform: translateX();
     &.active {
       top: -220%;
     }
@@ -763,7 +732,6 @@ main {
   }
 
   .search-form {
-    // background: rgba(255, 255, 255, 0.65);
     max-width: 300px;
     width: 100%;
   }
@@ -772,11 +740,6 @@ main {
     display: block;
     min-width: 250px;
   }
-
-  // &__input {
-  // 	height: 100px;
-
-  // }
 
   .search-form__search {
     border: none;
@@ -808,9 +771,7 @@ main {
 
 .comfort {
   text-align: center;
-  // @include adaptiv-value('margin-top', 100, 20);
   padding-top: 35px;
-  // @include adaptiv-value('margin-bottom', 60, 30);
   margin-bottom: 30px;
 
   &__title {
@@ -888,7 +849,6 @@ main {
   &__content-container {
     max-width: 650px;
     margin: 0 auto;
-    // background: lighten($color: #9da3be, $amount: 5%);
   }
 }
 
@@ -905,12 +865,8 @@ main {
 .booking-input {
   position: relative;
   flex: 1 0 auto;
-  // @include adaptiv-value("height", 57, 50);
-  // height: 40px;
-  // height: 1.5rem;
   height: 40px;
   cursor: pointer;
-  // height: 57px;
   transition: all 0.3s ease 0s;
 
   &:hover {
@@ -922,17 +878,9 @@ main {
     width: 100%;
     height: 100%;
     background-color: darken($color: #f8f8f8, $amount: 0%);
-    // background-color: #f8f8f8;
-
-    // @include adaptiv-value("font-size", 18, 18);
     font-size: 18px;
     padding-left: 15px;
     border-radius: 3px;
-    // transition: all 0.3s ease 0s;
-
-    // &:hover {
-    // 	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
-    // }
   }
 
   &_padding {
@@ -1049,9 +997,7 @@ main {
     font-weight: normal;
 
     span {
-      // font-size: 20px;
       @include adaptiv-value('font-size', 20, 14);
-      // display: inline-block;
     }
 
     margin-bottom: 10px;
@@ -1068,19 +1014,11 @@ main {
   }
 
   &__room_hovered .form-quests__room-delete span {
-    // box-sizing: content-box;
-
     border-bottom: 0.1px dotted #000;
-    // text-transform: ;
   }
 
   &__room-delete {
     background: transparent;
-
-    // span {
-    // 	// display: inline-block;
-    // 	border-bottom: 1px dashed #000;
-    // }
 
     cursor: pointer;
 
@@ -1097,7 +1035,6 @@ main {
   }
 
   &__kid {
-    // padding-left: 65px;
     position: relative;
     cursor: auto;
     box-shadow: none;
@@ -1124,17 +1061,9 @@ main {
     &::before,
     &::after {
       content: '';
-      // z-index: 5;
       transition: all 0.3s ease 0s;
       right: 18%;
-      // right: 0;
       top: 50%;
-
-      // left: 0;
-      // transform: translate(-50%,-50%);
-      // transform: translateX(-50%);
-
-      // top: 50%;
       position: absolute;
       width: 20px;
       height: 2px;
@@ -1147,8 +1076,6 @@ main {
       transform: rotate(-45deg);
     }
   }
-
-  // &__add-room {
 }
 
 .add-item {
@@ -1185,15 +1112,12 @@ main {
     background: #434141;
     right: -15px;
     top: 9px;
-    // transform: translateY(-50%);
   }
 
   &::after {
     content: '';
 
-    transform:
-			// translateY(-50%)
-      rotate(-90deg);
+    transform: rotate(-90deg);
   }
 }
 
@@ -1227,7 +1151,6 @@ main {
   border-radius: 2px;
   border: 1px solid black;
 
-  // &__item {
   li {
     cursor: pointer;
     padding: 10px 10px;
@@ -1240,11 +1163,7 @@ main {
     }
   }
 
-  // }
-
   &.active {
-    // height: 250px;
-    // border: 1px solid black;
     pointer-events: all;
     visibility: visible;
     padding: 10px;
@@ -1254,11 +1173,9 @@ main {
     opacity: 0;
     padding: 10px;
 
-    // height: 0;
     top: 100%;
 
     &.active {
-      // height: 190px;
       opacity: 1;
       top: 150%;
     }
@@ -1271,7 +1188,6 @@ main {
 
   &__input {
     flex: 1 1 auto;
-    // flex-wrap: wrap;
     display: flex;
     flex-direction: column;
   }
@@ -1363,7 +1279,6 @@ main {
   }
 
   .form-quests__item {
-    // margin-bottom: 30px;
     flex: 0 1 50%;
 
     &:not(:last-child) {
@@ -1461,6 +1376,7 @@ main {
   &-price {
     font-size: 20px;
     font-weight: 600;
+    align-self: start;
   }
 
   &-night-quests {
@@ -1478,8 +1394,6 @@ main {
   &-show {
     align-self: start;
     padding: 20px 10px;
-    // width: 100%;
-
     @include adaptiv-value('font-size', 24, 16);
     background: transparent;
     border: #000 solid 1px;
@@ -1511,9 +1425,6 @@ main {
 
   overflow: visible;
 
-  // border: 1px solid #000;
-  // border-radius: 5px;
-
   &__body {
     display: flex;
     flex-direction: column;
@@ -1524,13 +1435,11 @@ main {
     border: 1px solid #9da3be;
     border-radius: 5px;
     box-shadow: 0 0 2px #9da3be, 0 4px 8px #9da3be;
-    // margin-bottom: 20px;
   }
 }
 
 .room-info {
   display: flex;
-  // padding-bottom: 10px;
   margin-bottom: 20px;
 
   &__slider {
@@ -1594,7 +1503,6 @@ main {
 
 .menu-selection {
   flex: 0 0 30%;
-  // margin-left: 20px;
   padding-left: 20px;
   max-width: 280px;
 
@@ -1616,7 +1524,6 @@ main {
   }
 
   &__continue {
-    // width: 100%;
     padding: 0px 10px;
   }
 
@@ -1664,7 +1571,6 @@ main {
 
 .apartments-selection {
   &__body {
-    // max-height: 1000px;
     overflow: auto;
   }
 }
@@ -1775,7 +1681,6 @@ main {
 
   &__panel {
     flex: 0 0 40%;
-    // justify-content: end;
   }
 
   &__nights {
@@ -1816,7 +1721,6 @@ main {
 
   &__quests {
     display: flex;
-    column-gap: 5px;
   }
 
   &__price {
@@ -1953,8 +1857,6 @@ main {
   }
 
   &__title {
-    // padding-top: 20px;
-    // margin-top: 20px;
     @include adaptiv-value('font-size', 36, 24);
 
     margin-bottom: 30px;
@@ -2029,7 +1931,6 @@ main {
 
   .time {
     margin: 0;
-    // padding-right: 10px;
     justify-content: center;
     column-gap: 50px;
   }
@@ -2040,7 +1941,6 @@ main {
   }
 
   .time__trans {
-    // margin-left: 20px;
     margin: 0;
   }
 
@@ -2089,7 +1989,6 @@ main {
 .room-card {
   display: flex;
   flex: 0 1 45%;
-  // overflow: hidden;
 
   &__column {
     flex: 1 1 auto;
@@ -3118,16 +3017,13 @@ main {
   line-height: 120%;
   text-align: left;
   position: relative;
-  background: #e8e8e8;
+  background: #ebebeb;
   border-radius: 2px;
   cursor: pointer;
-  // background: rgb(0, 0, 0, 0.3);
   &::before {
     content: '';
     position: relative;
-    // top: 2px;
-    // flex: 0 0 20px;
-    // width: 20px;
+    top: 1px;
     min-width: 20px;
     height: 20px;
     background: #d4d8e6;
@@ -3144,7 +3040,6 @@ main {
     color: #fff;
     position: absolute;
     left: 8px;
-    // top: 2px;
     font-size: 20px;
     transition: all 0.1s ease 0s;
     transform: scale(0);
@@ -3152,7 +3047,6 @@ main {
 
   span {
     flex: 1 1 content;
-    // display: inline-block;
   }
 }
 
@@ -3180,8 +3074,6 @@ main {
 //=============================================================================================================================================================================
 
 .footer {
-  // @include adaptiv-value("margin-top", 60, 30);
-
   padding: 30px 0;
   background: #212020;
 

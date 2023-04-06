@@ -1,8 +1,13 @@
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 
+import { useSelector } from 'react-redux';
+
 import Slider from './Slider';
 import ToggleShowButton from './ToggleShowButton';
+import calcPrice from '../utils/calcPrice';
+import { bookingCountOfQuestsSelector } from '../redux/booking/bookingSelector';
+import useDate from '../hooks/useDate';
 
 export const BookingRoomList = ({ rooms, onlyOne, onSelelectRoom }) => {
   const [showOne, setShowOne] = useState(false);
@@ -39,10 +44,44 @@ export const BookingRoomList = ({ rooms, onlyOne, onSelelectRoom }) => {
   );
 };
 
-const BookingRoom = ({ title, images, icons, countOfQuests, id, onSelelectRoom }) => {
+const BookingRoom = ({ title, images, icons, countOfQuests, id, onSelelectRoom, price }) => {
   const onClickSelect = () => {
     onSelelectRoom(id);
   };
+
+  const bookingCountOfQuests = useSelector(bookingCountOfQuestsSelector());
+
+  const totalCountOfQuests = Math.min(countOfQuests, bookingCountOfQuests);
+
+  const { countOfDays } = useDate();
+
+  const myPrice = calcPrice(price, countOfDays, totalCountOfQuests);
+
+  function writeDeclinationQuests(number) {
+    switch (number) {
+      case 1:
+        return 'гость';
+      case 2:
+      case 3:
+      case 4:
+        return 'гостя';
+      default:
+        return 'гостей';
+    }
+  }
+
+  function writeDeclinationNights(number) {
+    switch (number) {
+      case 1:
+        return 'ночь';
+      case 2:
+      case 3:
+      case 4:
+        return 'ночи';
+      default:
+        return 'ночей';
+    }
+  }
 
   return (
     <div className="booking__grid-item">
@@ -53,8 +92,11 @@ const BookingRoom = ({ title, images, icons, countOfQuests, id, onSelelectRoom }
         <div className="booking__grid-name">{title}</div>
         <div className="booking__grid-row">
           <div className="booking__grid-cost-column">
-            <div className="booking__grid-price"> 8 300 P</div>
-            <div className="booking__grid-night-quests">1 ночь / 3 гостя</div>
+            <div className="booking__grid-price">{myPrice.price} P</div>
+            <div className="booking__grid-night-quests">
+              {countOfDays} {writeDeclinationNights(countOfDays)} / {totalCountOfQuests}{' '}
+              {writeDeclinationQuests(totalCountOfQuests)}
+            </div>
           </div>
           <button onClick={() => onClickSelect()} className="booking__grid-button">
             Выбрать

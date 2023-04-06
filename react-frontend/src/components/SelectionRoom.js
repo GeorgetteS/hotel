@@ -6,7 +6,7 @@ import Tariff from './Tariff';
 
 import { bookingRoomsSelector } from '../redux/booking/bookingSelector';
 
-import getIcons from '../utils/getIcons';
+import getTariffsInfo from '../utils/getTariffsInfo';
 
 const tariffs = [
   {
@@ -55,10 +55,10 @@ const tariffs = [
   },
 ];
 
-const SelectionRoom = ({ title, text, images, icons, countOfQuests, type }) => {
+const SelectionRoom = ({ title, text, images, icons, countOfQuests, type, price }) => {
   const items = useSelector(bookingRoomsSelector());
 
-  const tariffIcons = getIcons(items);
+  const tariffIcons = getTariffsInfo(items);
 
   return (
     <div className="card-selection__item">
@@ -90,6 +90,7 @@ const SelectionRoom = ({ title, text, images, icons, countOfQuests, type }) => {
       </div>
       <div className="card-selection__tariffs tariffs">
         {tariffs.map((tariff) => (
+          // if(tariff.extraPlace)
           <Tariff key={tariff.title.name} {...tariff} tariffIcons={tariffIcons} />
         ))}
       </div>
