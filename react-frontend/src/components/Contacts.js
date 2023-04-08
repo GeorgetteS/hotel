@@ -5,7 +5,7 @@ const Contacts = () => {
     <div className="contacts">
       <div className="container">
         <div className="contacts__body">
-          <h2 className="contacts__title title">Контакты</h2>
+          <h2 className="contacts__title title">Контактная информация</h2>
           <div className="contacts__row">
             <div className="contacts__address contacts__item">
               {' '}
