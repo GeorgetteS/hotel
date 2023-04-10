@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Card from '../components/Card';
 import RoomsMain from '../components/RoomsPage/RoomsMain';
-import Spinner from '../components/Spinner';
+import Spinner from '../UI/Spinner';
+
 import { roomSelector } from '../redux/rooms/roomSelector';
 
 import { fetchRooms } from '../redux/rooms/roomSlice';

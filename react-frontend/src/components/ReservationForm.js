@@ -1,30 +1,49 @@
-import React, { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
+import React, { useRef, useState } from 'react';
+import { Formik, Form, Field } from 'formik';
 
 import * as Yup from 'yup';
 
 import BookingButton from '../UI/BookingButton/BookingButton';
 
-
 import Input from '../UI/Input/Input';
+import PhoneInput from '../UI/Input/PhoneInput';
 
-// const validationSchema = Yup.object().shape({
-//   name: Yup.string().required('Name is required'),
-//   email: Yup.string().email('Invalid email').required('Email is required'),
-//   checkInDate: Yup.date().required('Check-in date is required'),
-//   checkOutDate: Yup.date().required('Check-out date is required'),
-// });
+const phoneTest = /^\+7 \(\d{3}\) \d{3}-\d{3}$/;
+
+const validationSchema = Yup.object().shape({
+  mainFamilyName: Yup.string()
+    .min(2, 'Must be 2 characters or more')
+    .max(15, 'Must be 15 characters or less')
+    .required('Необходимо указать фамилию'),
+  mainName: Yup.string()
+    .min(2, 'Must be 2 characters or more')
+    .max(15, 'Must be 15 characters or less')
+    .required('Необходимо указать имя'),
+  mainPatronymic: Yup.string().max(15, 'Must be 15 characters or less'),
+  email: Yup.string()
+    .email('Invalid email address')
+    .required('Необходимо указать электронную почту'),
+  phone: Yup.string()
+    .required('Необходимо указать номер телефона')
+    .matches(phoneTest, 'Неверно указан номер телефона'),
+  agreement: Yup.bool().oneOf([true], 'Необходимо согласиться с условиями бронирования'),
+});
 
 const initialValues = {
   mainFamilyName: '',
   mainName: '',
   mainPatronymic: '',
   email: '',
-  phoneNumber: '',
+  phone: '',
   wishes: '',
+  proof: false,
+  news: false,
+  another: false,
+  agreement: true,
 };
 
 const onSubmit = (values, { setSubmitting }) => {
+  // event.preventDefault();
   setTimeout(() => {
     alert(JSON.stringify(values, null, 2));
     setSubmitting(false);
@@ -33,10 +52,10 @@ const onSubmit = (values, { setSubmitting }) => {
 
 const ReservationForm = () => {
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      {({ errors, toched }) => (
+    <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+      {({ errors, touched }) => (
         <Form className="form">
-          <form className="form__body">
+          <div className="form__body">
             <div className="form__conclusion conclusion-form"></div>
             <div className="form__social social-form form-blok">
               <div className="form__title">Контактные данные</div>
@@ -66,8 +85,8 @@ const ReservationForm = () => {
                     />
                   </div>{' '}
                   <div className="social-form__item">
-                    <Input
-                      name="phoneNumber"
+                    <PhoneInput
+                      name="phone"
                       placeholder="Номер телефона"
                       type="tel"
                       icon={'../img/booking__phone.png'}
@@ -80,7 +99,6 @@ const ReservationForm = () => {
                       name="proof"
                       type="checkbox"
                       id="formProof"
-                      value="proof"
                       className="checkbox__input"
                     />
                     <label htmlFor="formProof" className="social-form__label checkbox-label">
@@ -90,13 +108,7 @@ const ReservationForm = () => {
                     </label>
                   </div>
                   <div className="social-form__checkbox">
-                    <Field
-                      type="checkbox"
-                      id="formNews"
-                      value="news"
-                      className="checkbox__input"
-                      name="news"
-                    />
+                    <Field type="checkbox" id="formNews" className="checkbox__input" name="news" />
                     <label htmlFor="formNews" className="social-form__label checkbox-label">
                       <span>
                         Я хочу узнавать о специальных предложениях и новостях по email или SMS
@@ -107,7 +119,6 @@ const ReservationForm = () => {
                     <Field
                       type="checkbox"
                       id="formAnother"
-                      value="another"
                       className="checkbox__input"
                       name="another"
                     />
@@ -115,12 +126,12 @@ const ReservationForm = () => {
                       <span> Я бронирую для другого человека</span>
                     </label>
                   </div>
-                  {/* <input type="checkbox" /> */}
                 </div>
               </div>
             </div>
-            <div className="form__visitors visitors-form form-blok form-blok_dashed">
-              <div className="form__title">Информация о гостях</div>
+            {/* todo */}
+            {/* <div className="form__visitors visitors-form form-blok form-blok_dashed">
+              <h3 className="form__title">Информация о гостях</h3>
               <div className="visitors-form__rooms-column">
                 <div className="visitors-form__body form-blok-border ">
                   <div className="visitors-form__title">
@@ -157,7 +168,7 @@ const ReservationForm = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="form__textarea textarea-form form-blok">
               <div className="form__title form__title_weight">Дополнительные комментарии</div>
               <textarea
@@ -175,16 +186,18 @@ const ReservationForm = () => {
                       name="agreement"
                       type="checkbox"
                       id="agreement"
-                      value="agreement"
                       className="checkbox__input"
                     />
-                    <label htmlFor="agreement" className=" checkbox-label">
+                    <label htmlFor="agreement" className="checkbox-label">
                       <span>
                         Я согласен с правилами онлайн-бронирования, обработкой персональных данных и
                         политикой конфиденциальности
                       </span>
                     </label>
                   </div>
+                  {touched.agreement && errors.agreement ? (
+                    <div className={'social-form__error'}>{errors.agreement}</div>
+                  ) : null}
                 </div>
                 <div className="payments-form__item">
                   <div className="payments-form__header">
@@ -209,8 +222,7 @@ const ReservationForm = () => {
                       <div className="payments-form__prepay payments-form__prepay_b">
                         Без предоплаты
                       </div>
-                      {/* <div className="payments-form__cost">4 240  ₽</div> */}
-                      <BookingButton />
+                      <BookingButton type={'submit'} />
                     </div>
                   </div>
                 </div>
@@ -252,9 +264,9 @@ const ReservationForm = () => {
                       <p>Обработка платежей осуществляется процессинговой системой PayAnyWay.</p>
                     </div>
                     <div className="payments-form__pay">
-                      <div className="payments-form__prepay">Без предоплаты</div>
+                      <div className="payments-form__prepay">Размер предоплаты</div>
                       <div className="payments-form__cost">4 240  ₽</div>
-                      <BookingButton />
+                      <BookingButton type={'submit'} />
                     </div>
                   </div>
                 </div>
@@ -305,15 +317,15 @@ const ReservationForm = () => {
                       <p>Обработка платежей осуществляется процессинговой системой PayAnyWay.</p>
                     </div>
                     <div className="payments-form__pay">
-                      <div className="payments-form__prepay">Без предоплаты</div>
+                      <div className="payments-form__prepay">Размер предоплаты</div>
                       <div className="payments-form__cost">4 240  ₽</div>
-                      <BookingButton />
+                      <BookingButton type={'submit'} />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </form>
+          </div>
         </Form>
       )}
     </Formik>

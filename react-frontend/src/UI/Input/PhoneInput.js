@@ -1,12 +1,13 @@
 import { useEffect, useRef } from 'react';
 import React from 'react';
+
+import InputMask from 'react-input-mask';
+
 import { useField } from 'formik';
 
 import classNames from 'classnames';
 
 import styles from './Input.module.scss';
-
-// console.log(styles);
 
 const Input = ({ icon, ...props }) => {
   const [field, meta] = useField(props);
@@ -22,8 +23,6 @@ const Input = ({ icon, ...props }) => {
     }
   }, [meta.error, meta.touched]);
 
-  // console.log(props);
-
   return (
     <div
       className={classNames(styles.container, meta.touched && meta.error ? 'has-error' : '')}
@@ -35,8 +34,10 @@ const Input = ({ icon, ...props }) => {
               <img src={icon} alt="" />
             </div>
           )}
-          <input
+          <InputMask
             className={classNames(styles.input, icon && styles.input_left)}
+            mask="+7 (999) 999-999"
+            maskChar="_"
             {...field}
             {...props}
           />

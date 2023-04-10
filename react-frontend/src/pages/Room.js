@@ -6,7 +6,7 @@ import RoomList from '../components/RoomPage/RoomList';
 
 import RoomInfo from '../components/RoomPage/RoomInfo';
 
-import Spinner from '../components/Spinner';
+import Spinner from '../UI/Spinner';
 
 function Room() {
   const [room, setRoom] = useState();

@@ -5,17 +5,16 @@ import About from '../components/Homepage/About';
 import Contacts from '../components/Contacts';
 
 function Homepage() {
-  const abourtRef = useRef(null);
+  const aboutRef = useRef(null);
 
   const handleButtonClick = () => {
-    abourtRef.current.scrollIntoView({ behavior: 'smooth' });
+    aboutRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <div>
       <Fullscreen scrollTo={handleButtonClick}></Fullscreen>
-      <div className="scroll-wrapper" ref={abourtRef}>
-        {' '}
+      <div className="scroll-wrapper" ref={aboutRef}>
         <About />
       </div>
       <Contacts />

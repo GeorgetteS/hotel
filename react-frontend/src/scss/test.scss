@@ -2892,6 +2892,29 @@ main {
   }
 }
 
+.social-form__error {
+  align-self: start;
+
+  padding: 7px 5px;
+  background-color: #cc2d2d;
+  border-radius: 2px;
+  position: relative;
+  color: #fff;
+  font-size: 14px;
+  &:before {
+    content: '';
+    position: absolute;
+    top: -35%;
+    transform: rotate(-180deg);
+    left: 7px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid #cc2d2d;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+  }
+}
+
 .visitors-form {
   &__rooms-column {
     display: flex;
@@ -2965,6 +2988,9 @@ main {
   }
 
   &__agreement {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
     margin-bottom: 15px;
     margin-left: 15px;
   }

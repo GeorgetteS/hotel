@@ -10,7 +10,7 @@ import { bookingSelector } from '../redux/booking/bookingSelector';
 import { roomSelector } from '../redux/rooms/roomSelector';
 
 import { fetchRooms } from '../redux/rooms/roomSlice';
-import Spinner from '../components/Spinner';
+import Spinner from '../UI/Spinner';
 import BookingForm from '../components/Bookingpage/BookingForm';
 import { setCountOfQuests } from '../redux/booking/bookingSlice';
 import BookingRoomsWithCheque from '../components/BookingRoomsWithCheque';
