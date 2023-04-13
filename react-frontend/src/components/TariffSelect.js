@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import TariffOption from './TariffOption';
 
-const TariffSelect = ({ ratio, extraPlace, tariffIcons }) => {
+const TariffSelect = ({ extraPlace, tariffIcons, prices }) => {
   const [isOneRoom, setIsOneRoom] = useState(false);
 
   useEffect(() => {
@@ -13,17 +13,32 @@ const TariffSelect = ({ ratio, extraPlace, tariffIcons }) => {
     }
   }, [tariffIcons]);
 
+  const options = tariffIcons.map((item, index) => (
+    <TariffOption
+      key={index}
+      oldPrice={prices[index].oldPrice}
+      price={prices[index].price}
+      discount={prices[index].discount}
+      extraPlace={extraPlace}
+      tariffIcons={item}
+      showButton={isOneRoom}
+    />
+  ));
+
+  // options.filter(item => )
+
   return (
     <ul className="tariffs__rooms">
-      {tariffIcons.map((item, index) => (
+      {/* {tariffIcons.map((item, index) => (
         <TariffOption
           key={index}
-          ratio={ratio}
+          // ratio={ratio}
           extraPlace={extraPlace}
           tariffIcons={item}
           showButton={isOneRoom}
         />
-      ))}
+      ))} */}
+      {options}
     </ul>
   );
 };

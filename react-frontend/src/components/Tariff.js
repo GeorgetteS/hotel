@@ -1,7 +1,25 @@
 import TariffSelect from './TariffSelect';
 
-const Tariff = ({ title, ratio, clauses, extraPlace, tariffIcons }) => {
-  // console.log(children);
+import calcPrice from '../utils/calcPrice';
+import useDate from '../hooks/useDate';
+
+const Tariff = ({ title, ratio, clauses, extraPlace, tariffIcons, price, rooms }) => {
+  // console.log(prices);
+
+  const { countOfDays } = useDate();
+
+  const prices = rooms.map((room) => {
+    const priceInfo = calcPrice(
+      price,
+      countOfDays,
+      room.countOfAdults + room.children.length,
+      ratio,
+    );
+    // console.log(priceInfo);
+    return {
+      ...priceInfo,
+    };
+  });
 
   return (
     <div className="tariffs__item">
@@ -30,7 +48,12 @@ const Tariff = ({ title, ratio, clauses, extraPlace, tariffIcons }) => {
           <div className="tariffs__nights">
             Стоимость за <b>1 ночь</b>
           </div>
-          <TariffSelect ratio={ratio} extraPlace={extraPlace} tariffIcons={tariffIcons} />
+          <TariffSelect
+            ratio={ratio}
+            prices={prices}
+            extraPlace={extraPlace}
+            tariffIcons={tariffIcons}
+          />
         </div>
       </div>
     </div>

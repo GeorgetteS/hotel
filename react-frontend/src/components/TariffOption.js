@@ -1,25 +1,29 @@
 import BookingButton from '../UI/BookingButton/BookingButton';
 
-const TariffOption = ({ tariffIcons, showButton, extraPlace, ratio }) => {
+const TariffOption = ({ tariffIcons, showButton, oldPrice, price, discount }) => {
   return (
     <li className="tariffs__room">
       <div className="tariffs__info">
-        <div className="tariffs__price-sale">
-          <span className="tariffs__discount">- 20%</span>
-          <span className="tariffs__sale">5 000 ₽</span>
-        </div>
+        {discount ? (
+          <div className="tariffs__price-sale">
+            <span className="tariffs__discount">- {discount}%</span>
+            <span className="tariffs__sale">{oldPrice} ₽</span>
+          </div>
+        ) : (
+          ''
+        )}
 
         <div className="tariffs__info-row">
           <div className="tariffs__quests">
-            {tariffIcons.map((icon) => {
+            {tariffIcons.map((icon, index) => {
               return (
-                <div className="tariffs__icon" key={icon}>
+                <div className="tariffs__icon" key={index}>
                   <img src={icon} alt="" />
                 </div>
               );
             })}
           </div>
-          <div className="tariffs__price">5 000 ₽</div>
+          <div className="tariffs__price">{price} ₽</div>
         </div>
       </div>
       {showButton ? (

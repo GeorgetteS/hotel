@@ -8,14 +8,15 @@ export default function getTariffsInfo(rooms) {
   };
 
   const icons = rooms.map((room) => {
-    let adults = Math.min(maxGuests, room.countOfAdults);
+    // let totalAdults = 0;
+    // const totalChild = [];
 
-    let children = room.children.reduce((sum, item) => {
-      if (item.ageValue) {
-        sum++;
-      }
-      return sum;
-    }, 0);
+    let adults = Math.min(maxGuests, room.countOfAdults);
+    const childrenArr = room.children.filter((child) => {
+      return child.ageValue;
+    });
+
+    let children = childrenArr.length;
 
     const allIcons = [];
 
@@ -43,6 +44,9 @@ export default function getTariffsInfo(rooms) {
 
     return allIcons;
   });
+
+  // console.log(totalAdults);
+  // console.log(totalChild);
 
   return icons;
 }

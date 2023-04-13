@@ -50,7 +50,7 @@ const tariffs = [
         icon: '../img/snowflake.svg',
       },
     ],
-    ratio: 1.2,
+    ratio: 1,
     extraPlace: true,
   },
 ];
@@ -71,16 +71,16 @@ const SelectionRoom = ({ title, text, images, icons, countOfQuests, type, price 
           <div className="room-info__parameters parameters-room">
             <div className="parameters-room__item">
               <div className="parameters-room__icon">
-                <img src="../img/snowflake.svg" alt="" />
+                <img src="../img/person.svg" alt="" />
               </div>
               <div className="parameters-room__text">до {countOfQuests} мест</div>
             </div>
-            <div className="parameters-room__item">
+            {/* <div className="parameters-room__item">
               <div className="parameters-room__icon">
                 <img src="../img/snowflake.svg" alt="" />
               </div>
               <div className="parameters-room__text">до 3 мест</div>
-            </div>
+            </div> */}
           </div>
           <div className="room-info__icons">
             <IconsList icons={icons} />
@@ -91,7 +91,13 @@ const SelectionRoom = ({ title, text, images, icons, countOfQuests, type, price 
       <div className="card-selection__tariffs tariffs">
         {tariffs.map((tariff) => (
           // if(tariff.extraPlace)
-          <Tariff key={tariff.title.name} {...tariff} tariffIcons={tariffIcons} />
+          <Tariff
+            key={tariff.title.name}
+            price={price}
+            rooms={items}
+            {...tariff}
+            tariffIcons={tariffIcons}
+          />
         ))}
       </div>
     </div>
