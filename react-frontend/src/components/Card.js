@@ -8,7 +8,7 @@ function Card({ price, title, text, images, icons, countOfQuests, type }) {
   return (
     <div className="gallery__room-card room-card">
       <div className="room-card__column">
-        <div className="room-card__slider">
+        <div onClick={() => navigate(`/rooms/${type}`)} className="room-card__slider">
           <Slider images={images} icons={icons} quests={countOfQuests} hover={true} />
         </div>
 

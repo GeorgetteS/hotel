@@ -13,6 +13,16 @@ function Slider({ icons, images, quests, hover, gallery }) {
     }
   }, [currentIndex, images]);
 
+  function onClickNext(e) {
+    e.stopPropagation();
+    setCurrentIndex((prev) => prev + 1);
+  }
+
+  function onClickPrev(e) {
+    e.stopPropagation();
+    setCurrentIndex((prev) => prev - 1);
+  }
+
   return (
     <div className="slider">
       {hover && (
@@ -57,10 +67,10 @@ function Slider({ icons, images, quests, hover, gallery }) {
           );
         })}
 
-        <button className="slider__prev prev" onClick={() => setCurrentIndex((prev) => prev - 1)}>
+        <button className="slider__prev prev" onClick={(e) => onClickPrev(e)}>
           <span className=" _icon-arrow_left"></span>
         </button>
-        <button className="slider__next next" onClick={() => setCurrentIndex((prev) => prev + 1)}>
+        <button className="slider__next next" onClick={(e) => onClickNext(e)}>
           <span className=" _icon-arrow_right "></span>
         </button>
       </div>
