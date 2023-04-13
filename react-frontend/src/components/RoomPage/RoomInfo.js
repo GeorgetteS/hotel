@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
-import Slider from '../Slider';
-import { IconsList } from '../../components/IconsList';
+import Slider from '../../UI/Slider';
+import { IconsList } from '../../UI/IconsList';
 
 const RoomInfo = ({ images, icons, quests, text, title, countOfQuests, premium, id }) => {
   const navigate = useNavigate();

@@ -18,7 +18,7 @@ function Room() {
   async function fetchOneRoom() {
     try {
       setLoading(true);
-      await fetch(`https://640ed1cc4ed25579dc3d72f1.mockapi.io/rooms/${type}`)
+      await fetch(`https://63f2529daab7d09125065aa9.mockapi.io/rooms/${type}`)
         .then((res) => res.json())
         .then((data) => {
           setRoom(data);

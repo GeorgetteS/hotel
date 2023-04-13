@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 
-import Slider from './Slider';
+import Slider from '../UI/Slider';
 
 function Card({ price, title, text, images, icons, countOfQuests, type }) {
   const navigate = useNavigate();

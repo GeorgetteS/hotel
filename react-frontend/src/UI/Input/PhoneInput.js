@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react';
-import React from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+import { useInView } from 'react-intersection-observer';
 
 import InputMask from 'react-input-mask';
 
@@ -10,18 +11,32 @@ import classNames from 'classnames';
 import styles from './Input.module.scss';
 
 const Input = ({ icon, ...props }) => {
-  const [field, meta] = useField(props);
+  const [isVisible, setIsVisible] = useState(true);
 
-  const ref = useRef(null);
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
 
   useEffect(() => {
-    if (meta.touched && meta.error && ref.current) {
-      ref.current.scrollIntoView({
+    if (inView) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  }, [inView]);
+
+  const [field, meta] = useField(props);
+
+  const input = useRef(null);
+
+  useEffect(() => {
+    if (meta.touched && meta.error && input.current && !isVisible) {
+      input.current.scrollIntoView({
         behavior: 'smooth',
-        block: 'center',
+        block: 'end',
       });
     }
-  }, [meta.error, meta.touched]);
+  }, [meta.error, meta.touched, isVisible]);
 
   return (
     <div

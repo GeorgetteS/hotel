@@ -18,6 +18,7 @@ export default function useHover(ref) {
 
     return () => {
       document.removeEventListener('mouseenter', onMouseEnter);
+      document.removeEventListener('mousemove', onMouseEnter);
       document.removeEventListener('mouseleave', onMouseLeave);
     };
   }, [hover, ref]);

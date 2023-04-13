@@ -1,4 +1,3 @@
-import React, { useRef, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 
 import * as Yup from 'yup';
@@ -129,6 +128,7 @@ const ReservationForm = () => {
                 </div>
               </div>
             </div>
+
             {/* todo */}
             {/* <div className="form__visitors visitors-form form-blok form-blok_dashed">
               <h3 className="form__title">Информация о гостях</h3>

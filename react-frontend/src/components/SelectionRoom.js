@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 
-import { IconsList } from './IconsList';
-import Slider from './Slider';
+import { IconsList } from '../UI/IconsList';
+import Slider from '../UI/Slider';
 import Tariff from './Tariff';
 
 import { bookingRoomsSelector } from '../redux/booking/bookingSelector';

@@ -3,13 +3,13 @@ import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { bookingSelector } from '../../redux/booking/bookingSelector';
-
-import BookingItem from './BookingItem';
-
 import { addRoom } from '../../redux/booking/bookingSlice';
+
 import useDate from '../../hooks/useDate';
 import useHide from '../../hooks/useHide';
-import Calendar from '../Calendar';
+
+import BookingItem from './BookingItem';
+import Calendar from '../../UI/Calendar';
 
 const BookingForm = ({ closeForm }) => {
   const { items } = useSelector(bookingSelector());

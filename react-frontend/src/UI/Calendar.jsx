@@ -4,7 +4,7 @@ import 'react-date-range/dist/theme/default.css';
 import ru from 'date-fns/locale/ru';
 import { addDays } from 'date-fns';
 
-const Calendar = ({ date, className, ref }) => {
+const Calendar = ({ date, className }) => {
   return (
     <div className={className}>
       <DateRange
@@ -13,7 +13,6 @@ const Calendar = ({ date, className, ref }) => {
         moveRangeOnFirstSelection={false}
         ranges={date.getDate()}
         months={2}
-        // className="calendarElement"
         direction="horizontal"
         showDateDisplay={false}
         showMonthArrow={false}

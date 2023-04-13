@@ -1,4 +1,6 @@
+import classNames from 'classnames';
 import { useInView } from 'react-intersection-observer';
+import { useEffect, useState } from 'react';
 
 import { ReactComponent as Wifi } from '../../assets/svg/wifi.svg';
 import { ReactComponent as Parking } from '../../assets/svg/parking.svg';
@@ -8,18 +10,29 @@ import { ReactComponent as Wallet } from '../../assets/svg/wallet.svg';
 import { ReactComponent as Location } from '../../assets/svg/location.svg';
 import { ReactComponent as Dog } from '../../assets/svg/dog.svg';
 import { ReactComponent as Taxi } from '../../assets/svg/taxi.svg';
-import classNames from 'classnames';
 
 function About() {
+  // const [isVisible, setIsVisible] = useState(false);
+
+  const [isVisible, setIsVisible] = useState(true);
+
   const { ref, inView } = useInView({
     threshold: 0.4,
   });
+
+  useEffect(() => {
+    if (inView) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  }, [inView]);
 
   return (
     <>
       <section className="about" ref={ref}>
         <div className="container">
-          <div className={classNames('about__body', inView && 'active')}>
+          <div className={classNames('about__body', isVisible && 'active')}>
             <h2 className="about__title title">
               Гостиница "Prestige" <br />
               <span>г. Ростов‑на‑Дону</span>

@@ -9,7 +9,7 @@ import { bookingCountOfQuestsSelector } from '../../../redux/booking/bookingSele
 import useHide from '../../../hooks/useHide';
 import { useHideQuestsCounter } from './useHideQuestsCounter';
 import useDate from '../../../hooks/useDate';
-import Calendar from '../../Calendar';
+import Calendar from '../../../UI/Calendar';
 
 const SearchForm = () => {
   const refCalendar = useRef(null);

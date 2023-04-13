@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 
-import Slider from './Slider';
+import Slider from '../UI/Slider';
 import ToggleShowButton from './ToggleShowButton';
 import calcPrice from '../utils/calcPrice';
 import { bookingCountOfQuestsSelector } from '../redux/booking/bookingSelector';

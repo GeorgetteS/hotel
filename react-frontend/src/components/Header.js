@@ -1,21 +1,23 @@
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { pathname } = useLocation();
 
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.classList.add('menu-open');
-    } else {
-      document.body.classList.remove('menu-open');
-    }
-  }, [isMenuOpen]);
-
+  const handleMenuButtonClick = () => {
+    setIsMenuOpen((prev) => !prev);
+    document.body.classList.toggle('menu-open');
+  };
   const handleLinkClick = () => {
     setIsMenuOpen(false);
+    document.body.classList.remove('menu-open');
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <header className="header">
@@ -51,7 +53,7 @@ function Header() {
           </nav>
           <div
             className={classNames('icon-menu', isMenuOpen && 'active')}
-            onClick={() => setIsMenuOpen((prev) => !prev)}>
+            onClick={handleMenuButtonClick}>
             <span></span>
           </div>
         </div>
