@@ -27,20 +27,7 @@ const TariffSelect = ({ extraPlace, tariffIcons, prices }) => {
 
   // options.filter(item => )
 
-  return (
-    <ul className="tariffs__rooms">
-      {/* {tariffIcons.map((item, index) => (
-        <TariffOption
-          key={index}
-          // ratio={ratio}
-          extraPlace={extraPlace}
-          tariffIcons={item}
-          showButton={isOneRoom}
-        />
-      ))} */}
-      {options}
-    </ul>
-  );
+  return <ul className="tariffs__rooms">{options}</ul>;
 };
 
 export default TariffSelect;

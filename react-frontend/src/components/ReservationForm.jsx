@@ -2,7 +2,7 @@ import { Formik, Form, Field } from 'formik';
 
 import * as Yup from 'yup';
 
-import BookingButton from '../UI/BookingButton/BookingButton';
+import BookingButton from '../UI/BookingButton/BookingButton.jsx';
 
 import Input from '../UI/Input/Input';
 import PhoneInput from '../UI/Input/PhoneInput';

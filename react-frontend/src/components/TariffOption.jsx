@@ -1,4 +1,4 @@
-import BookingButton from '../UI/BookingButton/BookingButton';
+import BookingButton from '../UI/BookingButton/BookingButton.jsx';
 
 const TariffOption = ({ tariffIcons, showButton, oldPrice, price, discount }) => {
   return (

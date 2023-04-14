@@ -1,6 +1,8 @@
 import TariffSelect from './TariffSelect';
 
 import calcPrice from '../utils/calcPrice';
+import writeDeclinationNights from '../utils/writeDeclinationNights';
+
 import useDate from '../hooks/useDate';
 
 const Tariff = ({ title, ratio, clauses, extraPlace, tariffIcons, price, rooms }) => {
@@ -46,7 +48,10 @@ const Tariff = ({ title, ratio, clauses, extraPlace, tariffIcons, price, rooms }
         </div>
         <div className="tariffs__panel">
           <div className="tariffs__nights">
-            Стоимость за <b>1 ночь</b>
+            Стоимость за{' '}
+            <b>
+              {countOfDays} {writeDeclinationNights(countOfDays)}
+            </b>
           </div>
           <TariffSelect
             ratio={ratio}
