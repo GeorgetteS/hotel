@@ -21,6 +21,8 @@ import useHide from '../../hooks/useHide';
 
 import useHover from '../../hooks/useHover';
 
+import List from '../../UI/List/List';
+
 const adultsList = [
   { value: 1, label: '1 Взрослый' },
   { value: 2, label: '2 Взрослых' },
@@ -46,17 +48,19 @@ const BookingItem = ({ id, children, number, countOfAdults }) => {
 
   const childList = useContext(ChildListContext);
 
-  // console.log(isHovered);
+  const addKid = (label) => {
+    const ageValue = childList.find((item) => item.label === label).ageValue;
 
-  const addKid = (item) => {
     const childId = JSON.stringify(new Date());
-    dispatch(addChild({ id, childId: childId, childNumber: children.length }));
-    dispatch(setChild({ id: id, ageValue: item.ageValue, childId: childId }));
+
+    dispatch(addChild({ id, childId, childNumber: children.length }));
+    dispatch(setChild({ id, ageValue, childId }));
     dispatch(setCountOfQuests());
   };
 
-  const setAdults = (item) => {
-    dispatch(setAdult({ id, countOfAdults: item.value }));
+  const setAdults = (label) => {
+    const countOfAdults = adultsList.find((item) => item.label === label).value;
+    dispatch(setAdult({ id, countOfAdults }));
     dispatch(setCountOfQuests());
   };
 
@@ -72,11 +76,8 @@ const BookingItem = ({ id, children, number, countOfAdults }) => {
     }
   }, [children]);
 
-  const adults = adultsList.map((item, index) => (
-    <li key={item.value} onClick={() => setAdults(item)}>
-      {item.label}
-    </li>
-  ));
+  const adultsValues = adultsList.map((item) => item.label);
+  const childrenValues = childList.map((item) => item.label);
 
   return (
     <div className={classNames('form-quests__room ', isHovered && 'form-quests__room_hovered')}>
@@ -118,13 +119,12 @@ const BookingItem = ({ id, children, number, countOfAdults }) => {
               <img src="./img/person.svg" alt="" />
             </div>
             <span className={classNames(`triangle `, isAdultsVisible && 'active')}></span>
-            <ul
-              className={classNames(
-                `quests-adult__list quests-list `,
-                isAdultsVisible && 'active',
-              )}>
-              {adults}
-            </ul>
+            <List
+              isVisible={isAdultsVisible}
+              items={adultsValues}
+              appear={'dropdown'}
+              setSelectedItem={(label) => setAdults(label)}
+            />
           </div>
         </div>
         <div className="form-quests__item ">
@@ -135,17 +135,12 @@ const BookingItem = ({ id, children, number, countOfAdults }) => {
             <div className="quests-child__input booking-input booking-input_padding">
               <input type="text" readOnly placeholder="Добавить детей" />
               <span className="quests-child__icon quests-icon"></span>
-              <ul
-                className={`quests-child__list quests-list quests-list_low-height ${
-                  isChildVisible ? 'active' : ''
-                }`}>
-                {childList.map((item) => (
-                  <li key={item.ageValue} onClick={() => addKid(item)}>
-                    {' '}
-                    {item.label}{' '}
-                  </li>
-                ))}
-              </ul>
+              <List
+                isVisible={isChildVisible}
+                items={childrenValues}
+                appear={'opacity'}
+                setSelectedItem={(label) => addKid(label)}
+              />
             </div>
           </div>
           {children?.map((item) => {
