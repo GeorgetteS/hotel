@@ -24,7 +24,7 @@ function QuestSelect({ handleSelector, className }) {
   };
 
   return (
-    <div className={`quest-select ${className}`}>
+    <div className={`quest-select ${className} scroll-bar`}>
       <div className="quest-select__body">
         <div className="quest-select__title">Количество гостей</div>
         {items.map((room, index) => {

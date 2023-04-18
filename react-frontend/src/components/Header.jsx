@@ -1,10 +1,14 @@
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+
+import { clearCheque } from '../redux/cheque/chequeSlice';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
 
   const handleMenuButtonClick = () => {
     setIsMenuOpen((prev) => !prev);
@@ -17,7 +21,8 @@ function Header() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [pathname]);
+    dispatch(clearCheque());
+  }, [pathname, dispatch]);
 
   return (
     <header className="header">

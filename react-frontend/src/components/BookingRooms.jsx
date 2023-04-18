@@ -1,12 +1,14 @@
 import { useState } from 'react';
 
-import RoomsSelectionWhenMany from '../components/RoomsSelectionWhenMany';
+import { BookingRoomList } from './BookingRoomList';
+
+import BookingSelectionWhenOneRoom from './RoomsSelectionWhenOneRoom';
 
 import Result from './Result';
 import BookingPanel from './BookingPanel';
 import ReservationForm from './ReservationForm';
 
-const BookingRoomsWithCheque = ({ rooms, roomsType, setShowForm }) => {
+const BookingRooms = ({ rooms, roomsType, setShowForm }) => {
   const [step, setStep] = useState(0);
   const [selectedRoom, setselectedRoom] = useState();
 
@@ -15,13 +17,17 @@ const BookingRoomsWithCheque = ({ rooms, roomsType, setShowForm }) => {
     setStep(step + 1);
   }
 
+  // function goToNextStep() {
+  //   setStep(step + 1);
+  // }
+
   function switchTitle(step) {
     switch (step) {
       case 0:
         return 'Выберите Номер';
 
       case 1:
-        return 'Введите данные гостей';
+        return 'Выберите Тариф';
 
       case 2:
         return 'Введите данные гостей';
@@ -47,6 +53,11 @@ const BookingRoomsWithCheque = ({ rooms, roomsType, setShowForm }) => {
       case 0:
         return 'Продолжить бронирование';
 
+      case 1:
+        return 'Продолжить бронирование';
+
+      case 2:
+        return '';
       default:
     }
   }
@@ -55,7 +66,7 @@ const BookingRoomsWithCheque = ({ rooms, roomsType, setShowForm }) => {
     <>
       <Result setShowForm={() => setShowForm()} disableResult={step === 0 ? false : true} />
       <BookingPanel
-        now={(step + 1) * 33}
+        now={(step + 1) * 25}
         color={'#9da3be'}
         title={switchTitle(step)}
         prev={switchPrev(step)}
@@ -64,15 +75,16 @@ const BookingRoomsWithCheque = ({ rooms, roomsType, setShowForm }) => {
         onClickNext={() => setStep((prev) => prev + 1)}
       />
       {step === 0 && (
-        <RoomsSelectionWhenMany
+        <BookingRoomList
           rooms={rooms}
           onSelelectRoom={(room) => goToSecondStep(room)}
           onlyOne={roomsType}
         />
       )}
-      {step === 1 && <ReservationForm />}
+      {step === 1 && <BookingSelectionWhenOneRoom rooms={rooms} selectedRoom={selectedRoom} />}
+      {step === 2 && <ReservationForm />}
     </>
   );
 };
 
-export default BookingRoomsWithCheque;
+export default BookingRooms;

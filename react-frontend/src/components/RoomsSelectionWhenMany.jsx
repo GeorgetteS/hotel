@@ -5,7 +5,7 @@ import BookingCheque from './BookingCheque';
 import SelectionRoom from './SelectionRoom';
 import ToggleShowButton from './ToggleShowButton';
 
-const RoomsSelectionWhenMany = ({ rooms, onlyOne, onSelelectRoom }) => {
+const RoomsSelectionWhenMany = ({ rooms, onlyOne, goToNextStep }) => {
   const [showOne, setShowOne] = useState(false);
   const [roomArr, setRoomArr] = useState([]);
 
@@ -28,7 +28,7 @@ const RoomsSelectionWhenMany = ({ rooms, onlyOne, onSelelectRoom }) => {
   }, [rooms, onlyOne]);
 
   const allRooms = roomArr.map((room) => {
-    return <SelectionRoom key={room.id} {...room} onSelelectRoom={onSelelectRoom} />;
+    return <SelectionRoom key={room.id} {...room} goToNextStep={goToNextStep} />;
   });
   return (
     <div className="booking__selection selection-booking">
@@ -48,7 +48,7 @@ const RoomsSelectionWhenMany = ({ rooms, onlyOne, onSelelectRoom }) => {
             </div>
           </div>
         </div>
-        <BookingCheque />
+        <BookingCheque goToNextStep={goToNextStep} />
       </div>
     </div>
   );

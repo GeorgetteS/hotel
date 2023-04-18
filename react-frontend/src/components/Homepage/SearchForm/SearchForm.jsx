@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -21,6 +22,8 @@ const SearchForm = () => {
   const date = useDate();
 
   const countOfQuests = useSelector(bookingCountOfQuestsSelector());
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -77,12 +80,12 @@ const SearchForm = () => {
               }
             </div>
           </div>
-          <div className="search-form__search">
+          <button className="search-form__search" onClick={() => navigate('/booking')}>
             <div className="search-form__search-icon">
               <img src="./img/search.svg" alt="" />
             </div>
             <input type="button" value="Найти номер" />
-          </div>
+          </button>
         </div>
       </div>
     </>

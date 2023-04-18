@@ -14,6 +14,7 @@ import Spinner from '../UI/Spinner';
 import BookingForm from '../components/Bookingpage/BookingForm';
 import { setCountOfQuests } from '../redux/booking/bookingSlice';
 import BookingRoomsWithCheque from '../components/BookingRoomsWithCheque';
+import { clearCheque } from '../redux/cheque/chequeSlice';
 
 function Booking() {
   const [roomsType, setRoomsType] = useState(null);
@@ -44,7 +45,12 @@ function Booking() {
     if (searchParams.has('type')) {
       setRoomsType(searchParams.get('type'));
     }
-  }, []);
+  }, [searchParams]);
+
+  const openForm = () => {
+    setShowForm(true);
+    dispatch(clearCheque());
+  };
 
   const closeForm = () => {
     setShowForm(false);
@@ -84,13 +90,9 @@ function Booking() {
       <div className="container">
         <div className="booking__title">Бронирование Номеров</div>
         {showAll ? (
-          <BookingRoomsWithCheque
-            setShowForm={() => setShowForm(true)}
-            rooms={rooms}
-            roomsType={roomsType}
-          />
+          <BookingRoomsWithCheque setShowForm={openForm} rooms={rooms} roomsType={roomsType} />
         ) : (
-          <BookingRooms setShowForm={() => setShowForm(true)} rooms={rooms} roomsType={roomsType} />
+          <BookingRooms setShowForm={openForm} rooms={rooms} roomsType={roomsType} />
         )}
       </div>
     </main>

@@ -6,7 +6,7 @@
 body {
   font-family: 'Playfair Display';
   font-feature-settings: 'pnum' on, 'lnum' on;
-  & .menu-open {
+  &.menu-open {
     overflow: hidden;
     touch-action: none;
   }
@@ -38,6 +38,26 @@ input {
   // right: 0;
   z-index: 5;
   bottom: 110%;
+}
+
+.scroll-bar {
+  scrollbar-color: rgb(157, 163, 190, 0.75) transparent;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgb(157, 163, 190, 0.65);
+    cursor: pointer;
+    border-radius: 5px;
+  }
 }
 
 //=============================================================================================================================================================================
@@ -73,8 +93,6 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  // z-index: 15;
-
   &__list {
     display: flex;
     column-gap: 40px;
@@ -186,26 +204,29 @@ input {
 
 @media (max-width: 767px) {
   .menu-header {
-    z-index: 15;
-    font-size: 22px;
-    font-weight: 600;
     position: absolute;
-    flex-direction: column;
-    padding: 60px 0 20px 0;
-    row-gap: 20px;
-
+    z-index: 15;
     top: 0;
     left: -100%;
     width: 100vw;
     height: 100vh;
+
+    flex-direction: column;
+
+    font-size: 22px;
+    font-weight: 600;
+    padding: 60px 0 20px 0;
+    row-gap: 20px;
     background: rgba(157, 163, 190, 0.9);
-    // backdrop-filter: blur(1px);
+
     transition: left 0.3s ease 0s;
+    will-change: left;
+
     &.active {
-      top: 0;
       left: 0;
     }
   }
+
   .menu-header__list {
     flex-direction: column;
     row-gap: 20px;
@@ -262,7 +283,7 @@ main {
     align-items: start;
     flex: 1 1 auto;
     justify-content: space-between;
-    row-gap: 10px;
+    row-gap: 30px;
   }
 }
 
@@ -374,6 +395,7 @@ main {
   &__search {
     height: 72px;
     border-top: 0.5px solid rgba(255, 255, 255, 0.15);
+    background: inherit;
 
     input {
       background: transparent;
@@ -433,24 +455,6 @@ main {
   border-radius: 2px;
   transition: all 0.3s ease 0s;
   pointer-events: none;
-
-  scrollbar-color: rgb(157, 163, 190, 0.75) transparent;
-  scrollbar-width: thin;
-
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-    border-radius: 5px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgb(157, 163, 190, 0.65);
-    cursor: pointer;
-    border-radius: 5px;
-  }
 
   &.active {
     opacity: 1;
@@ -768,11 +772,12 @@ main {
     position: relative;
     opacity: 0;
     transition: all 0.5s ease 0s;
-    top: 30px;
+    transform: translateY(30px);
+
+    will-change: transform, opacity;
 
     &.active {
-      top: 0;
-
+      transform: translateY(0px);
       opacity: 1;
     }
   }
@@ -1192,67 +1197,6 @@ main {
   }
 }
 
-.quests-adult {
-  transition: all 0.3s ease 0s;
-
-  &__list {
-    height: 0;
-
-    &.active {
-      height: 250px;
-    }
-  }
-
-  &.active {
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
-  }
-}
-
-.quests-list {
-  z-index: 10;
-  position: absolute;
-  top: 150%;
-  width: 100%;
-  background: #f8f8f8;
-  overflow: auto;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease 0s;
-  pointer-events: none;
-  visibility: hidden;
-  border-radius: 2px;
-  border: 1px solid black;
-
-  li {
-    cursor: pointer;
-    padding: 10px 10px;
-    @include adaptiv-value('font-size', 20, 18);
-    transition: background 0.05s ease 0s;
-    font-weight: normal;
-
-    &:hover {
-      background: darken(#f8f8f8, 8%);
-    }
-  }
-
-  &.active {
-    pointer-events: all;
-    visibility: visible;
-    padding: 10px;
-  }
-
-  &_low-height {
-    opacity: 0;
-    padding: 10px;
-
-    top: 100%;
-
-    &.active {
-      opacity: 1;
-      top: 150%;
-    }
-  }
-}
-
 .quests-child {
   display: flex;
   flex: 1 1 auto;
@@ -1588,22 +1532,18 @@ main {
     font-size: 18px;
   }
 
+  &__total {
+    padding-top: 15px;
+  }
+
   &__total-price {
     font-size: 18px;
-    margin: 15px 10px;
+    margin: 0 10px 15px 10px;
     text-align: right;
   }
 
   &__continue {
     padding: 0px 10px;
-  }
-
-  &__button {
-    background: #9da3be;
-    color: #fff;
-    width: 100%;
-    height: 40px;
-    border-radius: 5px;
   }
 }
 
@@ -1642,6 +1582,7 @@ main {
 
 .apartments-selection {
   &__body {
+    max-height: 500px;
     overflow: auto;
   }
 }
@@ -1650,8 +1591,12 @@ main {
   font-size: 14px;
   text-align: left;
   &__display {
+    width: 100%;
     padding: 10px 20px;
     background: rgb(217, 217, 217, 0.9);
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    border-top: 1px solid rgb(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgb(0, 0, 0, 0.3);
   }
 
   &__title {
@@ -1662,7 +1607,24 @@ main {
   }
 
   &__room-type {
+    text-align: left;
     line-height: 18px;
+    position: relative;
+    &::before {
+      content: '˄';
+      font-size: 20px;
+      position: absolute;
+      top: 1px;
+      right: 0;
+      transition: all 0.3s ease 0s;
+    }
+
+    &.open {
+      &::before {
+        content: '˄';
+        transform: rotate(-180deg);
+      }
+    }
   }
 }
 
@@ -1670,6 +1632,12 @@ main {
   padding: 0px 10px;
   line-height: 15px;
   border-bottom: 1px solid rgb(0, 0, 0, 0.15);
+  box-sizing: content-box;
+
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease 0s;
+  will-change: max-height;
 
   &__item {
     font-size: 12px;
@@ -2289,35 +2257,14 @@ main {
   flex-wrap: wrap;
   row-gap: 10px;
   margin: 10px 0;
-  // justify-content: space-around;
   column-gap: 10px;
   overflow: auto;
   padding-bottom: 5px;
-
-  scrollbar-color: rgb(157, 163, 190, 0.75) rgb(208, 205, 205, 0.95);
-  scrollbar-width: thin;
-
-  &::-webkit-scrollbar {
-    height: 10px;
-    // border-radius: 5px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: rgb(208, 205, 205, 0.95);
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgb(157, 163, 190, 0.75);
-    cursor: pointer;
-    border-radius: 10px;
-  }
 
   &__item {
     position: relative;
     flex: 0 0 20%;
     cursor: pointer;
-    // border-radius: 50px;
 
     img {
       border-radius: 3px;

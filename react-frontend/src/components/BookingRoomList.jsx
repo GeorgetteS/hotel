@@ -8,6 +8,7 @@ import ToggleShowButton from './ToggleShowButton';
 import calcPrice from '../utils/calcPrice';
 import { bookingCountOfQuestsSelector } from '../redux/booking/bookingSelector';
 import useDate from '../hooks/useDate';
+import writeDeclinationNights from '../utils/writeDeclinationNights';
 
 export const BookingRoomList = ({ rooms, onlyOne, onSelelectRoom }) => {
   const [showOne, setShowOne] = useState(false);
@@ -70,19 +71,6 @@ const BookingRoom = ({ title, images, icons, countOfQuests, id, onSelelectRoom, 
     }
   }
 
-  function writeDeclinationNights(number) {
-    switch (number) {
-      case 1:
-        return 'ночь';
-      case 2:
-      case 3:
-      case 4:
-        return 'ночи';
-      default:
-        return 'ночей';
-    }
-  }
-
   return (
     <div className="booking__grid-item">
       <div className="booking__grid-slider">
@@ -94,7 +82,7 @@ const BookingRoom = ({ title, images, icons, countOfQuests, id, onSelelectRoom, 
           <div className="booking__grid-cost-column">
             <div className="booking__grid-price">{myPrice.price} P</div>
             <div className="booking__grid-night-quests">
-              {countOfDays} {writeDeclinationNights(countOfDays)} / {totalCountOfQuests}{' '}
+              {writeDeclinationNights(countOfDays)} / {totalCountOfQuests}{' '}
               {writeDeclinationQuests(totalCountOfQuests)}
             </div>
           </div>

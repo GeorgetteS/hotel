@@ -1,12 +1,11 @@
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 import { IconsList } from '../UI/IconsList';
 import Slider from '../UI/Slider';
 import Tariff from './Tariff';
 
 import { bookingRoomsSelector } from '../redux/booking/bookingSelector';
-
-import getTariffsInfo from '../utils/getTariffsInfo';
 
 const tariffs = [
   {
@@ -58,7 +57,7 @@ const tariffs = [
 const SelectionRoom = ({ title, text, images, icons, countOfQuests, type, price }) => {
   const items = useSelector(bookingRoomsSelector());
 
-  const tariffIcons = getTariffsInfo(items);
+  const [countOfAvailiableRooms, setCountOfAvailiableRooms] = useState(5);
 
   return (
     <div className="card-selection__item">
@@ -75,12 +74,6 @@ const SelectionRoom = ({ title, text, images, icons, countOfQuests, type, price 
               </div>
               <div className="parameters-room__text">до {countOfQuests} мест</div>
             </div>
-            {/* <div className="parameters-room__item">
-              <div className="parameters-room__icon">
-                <img src="../img/snowflake.svg" alt="" />
-              </div>
-              <div className="parameters-room__text">до 3 мест</div>
-            </div> */}
           </div>
           <div className="room-info__icons">
             <IconsList icons={icons} />
@@ -90,13 +83,13 @@ const SelectionRoom = ({ title, text, images, icons, countOfQuests, type, price 
       </div>
       <div className="card-selection__tariffs tariffs">
         {tariffs.map((tariff) => (
-          // if(tariff.extraPlace)
           <Tariff
             key={tariff.title.name}
             price={price}
             rooms={items}
             {...tariff}
-            tariffIcons={tariffIcons}
+            roomTitle={title}
+            countOfAvailiableRooms={countOfAvailiableRooms}
           />
         ))}
       </div>
