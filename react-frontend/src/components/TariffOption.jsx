@@ -113,6 +113,7 @@ const TariffOption = ({
           <div className="tariffs__price">{price} ₽</div>
         </div>
       </div>
+
       {isOneRoom ? (
         <div className="tariff__button">
           <BookingButton onCLickButton={returnOptionInfo} label={'Забронировать'} />
