@@ -75,7 +75,7 @@ function Slider({ icons, images, quests, hover, gallery }) {
         </button>
       </div>
       {gallery && (
-        <div className="slider__gallery gallery-slider">
+        <div className="slider__gallery gallery-slider scroll-bar">
           {images.map((item, index) => {
             return (
               <div

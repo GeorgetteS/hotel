@@ -1,12 +1,12 @@
 export default function writeDeclinationNights(number) {
   switch (number) {
     case 1:
-      return 'ночь';
+      return `${number} ночь`;
     case 2:
     case 3:
     case 4:
-      return 'ночи';
+      return `${number} ночи`;
     default:
-      return 'ночей';
+      return `${number} ночей`;
   }
 }

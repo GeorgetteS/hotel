@@ -14,7 +14,7 @@ function Rooms() {
 
   useEffect(() => {
     dispatch(fetchRooms());
-  }, []);
+  }, [dispatch]);
 
   const roomCards = rooms.map((item) => <Card key={item.id} {...item} type={item.id}></Card>);
 

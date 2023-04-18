@@ -82,7 +82,7 @@ const BookingRoom = ({ title, images, icons, countOfQuests, id, onSelelectRoom, 
           <div className="booking__grid-cost-column">
             <div className="booking__grid-price">{myPrice.price} P</div>
             <div className="booking__grid-night-quests">
-              {countOfDays} {writeDeclinationNights(countOfDays)} / {totalCountOfQuests}{' '}
+              {writeDeclinationNights(countOfDays)} / {totalCountOfQuests}{' '}
               {writeDeclinationQuests(totalCountOfQuests)}
             </div>
           </div>

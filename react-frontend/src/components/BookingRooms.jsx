@@ -17,6 +17,10 @@ const BookingRooms = ({ rooms, roomsType, setShowForm }) => {
     setStep(step + 1);
   }
 
+  // function goToNextStep() {
+  //   setStep(step + 1);
+  // }
+
   function switchTitle(step) {
     switch (step) {
       case 0:

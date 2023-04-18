@@ -10,4 +10,8 @@
   &:hover {
     background: darken($color: #9da3be, $amount: 8%);
   }
+  &:disabled {
+    cursor: auto;
+    background: rgb(157, 163, 190, 0.6);
+  }
 }

@@ -222,7 +222,7 @@ const ReservationForm = () => {
                       <div className="payments-form__prepay payments-form__prepay_b">
                         Без предоплаты
                       </div>
-                      <BookingButton type={'submit'} />
+                      <BookingButton type={'submit'} label={'Забронировать'} />
                     </div>
                   </div>
                 </div>
@@ -266,7 +266,7 @@ const ReservationForm = () => {
                     <div className="payments-form__pay">
                       <div className="payments-form__prepay">Размер предоплаты</div>
                       <div className="payments-form__cost">4 240  ₽</div>
-                      <BookingButton type={'submit'} />
+                      <BookingButton type={'submit'} label={'Забронировать'} />
                     </div>
                   </div>
                 </div>
@@ -319,7 +319,7 @@ const ReservationForm = () => {
                     <div className="payments-form__pay">
                       <div className="payments-form__prepay">Размер предоплаты</div>
                       <div className="payments-form__cost">4 240  ₽</div>
-                      <BookingButton type={'submit'} />
+                      <BookingButton type={'submit'} label={'Забронировать'} />
                     </div>
                   </div>
                 </div>

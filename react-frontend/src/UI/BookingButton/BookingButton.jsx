@@ -1,16 +1,13 @@
 import styles from './BookingButton.module.scss';
 
-const BookingButton = ({ type, value, onCLickButton }) => {
-  // function onClickMe() {
-  //   onCLickButton(value);
-  // }
+const BookingButton = ({ type, onCLickButton, disabled, label }) => {
   return (
     <button
+      onClick={onCLickButton}
       type={type || 'button'}
       className={styles.root}
-      //  onClick={onClickMe}
-    >
-      Забронировать
+      disabled={disabled}>
+      {label}
     </button>
   );
 };

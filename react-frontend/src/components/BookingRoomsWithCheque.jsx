@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import RoomsSelectionWhenMany from '../components/RoomsSelectionWhenMany';
+import RoomsSelectionWhenMany from './RoomsSelectionWhenMany';
 
 import Result from './Result';
 import BookingPanel from './BookingPanel';
@@ -8,12 +8,6 @@ import ReservationForm from './ReservationForm';
 
 const BookingRoomsWithCheque = ({ rooms, roomsType, setShowForm }) => {
   const [step, setStep] = useState(0);
-  const [selectedRoom, setselectedRoom] = useState();
-
-  function goToSecondStep(room) {
-    setselectedRoom(room);
-    setStep(step + 1);
-  }
 
   function switchTitle(step) {
     switch (step) {
@@ -66,7 +60,7 @@ const BookingRoomsWithCheque = ({ rooms, roomsType, setShowForm }) => {
       {step === 0 && (
         <RoomsSelectionWhenMany
           rooms={rooms}
-          onSelelectRoom={(room) => goToSecondStep(room)}
+          goToNextStep={() => setStep((prev) => prev + 1)}
           onlyOne={roomsType}
         />
       )}
