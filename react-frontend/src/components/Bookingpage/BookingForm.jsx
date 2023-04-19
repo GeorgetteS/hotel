@@ -36,7 +36,7 @@ const BookingForm = ({ closeForm }) => {
           </div>
 
           {openCalendar && (
-            <div className={'form-date__calendar'} ref={refCalendar}>
+            <div className={'form-date__calendar calendarWrapper '} ref={refCalendar}>
               <Calendar date={date} />
             </div>
           )}

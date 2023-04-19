@@ -2,7 +2,7 @@ import { useLayoutEffect, useState } from 'react';
 
 const queries = ['(max-width: 767px)', '(min-width: 768px)'];
 
-export const useMatchMedia = () => {
+const useMatchMedia = () => {
   const mediaQueryLists = queries.map((query) => matchMedia(query));
 
   const getValues = () => mediaQueryLists.map((mql) => mql.matches);
@@ -25,3 +25,5 @@ export const useMatchMedia = () => {
     {},
   );
 };
+
+export default useMatchMedia;

@@ -4,7 +4,11 @@ import 'react-date-range/dist/theme/default.css';
 import ru from 'date-fns/locale/ru';
 import { addDays } from 'date-fns';
 
+import useMatchMedia from '../hooks/useMatchMedia';
+
 const Calendar = ({ date, className }) => {
+  const { isMobile } = useMatchMedia();
+
   return (
     <div className={className}>
       <DateRange
@@ -13,9 +17,9 @@ const Calendar = ({ date, className }) => {
         moveRangeOnFirstSelection={false}
         ranges={date.getDate()}
         months={2}
-        direction="horizontal"
+        direction={isMobile ? 'vertical' : 'horizontal'}
         showDateDisplay={false}
-        showMonthArrow={false}
+        showMonthArrow={true}
         showMonthAndYearPickers={false}
         locale={ru}
         minDate={new Date()}

@@ -8,6 +8,7 @@ import QuestSelect from '../QuestSelect';
 import { bookingCountOfQuestsSelector } from '../../../redux/booking/bookingSelector';
 
 import useHide from '../../../hooks/useHide';
+
 import { useHideQuestsCounter } from './useHideQuestsCounter';
 import useDate from '../../../hooks/useDate';
 import Calendar from '../../../UI/Calendar';
@@ -31,7 +32,9 @@ const SearchForm = () => {
         <div className="search-form__body">
           <div className="search-form__form">
             <div className="search-form__calendar-panel" ref={refCalendar}>
-              {openCalendar && <Calendar date={date} className="calendarElement" />}
+              {openCalendar && (
+                <Calendar date={date} className="calendarElement scroll-bar calendarWrapper " />
+              )}
 
               <div className="search-form__arrival search-form__item arrival">
                 <div className="arrival__input">

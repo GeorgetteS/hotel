@@ -37,7 +37,20 @@ input {
   position: absolute;
   // right: 0;
   z-index: 5;
-  bottom: 110%;
+  bottom: 30%;
+
+  @media (max-width: 530px) {
+    bottom: 0;
+    right: -25px;
+  }
+  @media (max-height: 530px) {
+    bottom: -25%;
+  }
+}
+
+.calendarWrapper {
+  max-height: 325px;
+  overflow: auto;
 }
 
 .scroll-bar {
@@ -283,7 +296,7 @@ main {
     align-items: start;
     flex: 1 1 auto;
     justify-content: space-between;
-    row-gap: 30px;
+    row-gap: 50px;
   }
 }
 
@@ -343,6 +356,7 @@ main {
   &__calendar-panel {
     display: flex;
     flex: 0 0 66%;
+    position: relative;
   }
 
   &__label {
@@ -755,6 +769,14 @@ main {
   }
 }
 
+@media (max-height: 530px) {
+  .quest-select {
+    top: -50%;
+    &.active {
+      top: -110%;
+    }
+  }
+}
 //=============================================================================================================================================================================
 
 .scroll-wrapper {
@@ -969,7 +991,7 @@ main {
 
 .form-booking {
   padding: 0 0 25px;
-  // background: #9DA3BE;
+  position: relative;
 
   &__submit {
     margin-top: 50px;
@@ -1002,6 +1024,8 @@ main {
   &__calendar {
     position: absolute;
     z-index: 10;
+    right: 0;
+    top: 0;
   }
 
   &__title {

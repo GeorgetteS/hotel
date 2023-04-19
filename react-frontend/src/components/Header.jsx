@@ -4,11 +4,13 @@ import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 
 import { clearCheque } from '../redux/cheque/chequeSlice';
+import useMatchMedia from '../hooks/useMatchMedia';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const { isMobile } = useMatchMedia();
 
   const handleMenuButtonClick = () => {
     setIsMenuOpen((prev) => !prev);
@@ -56,11 +58,13 @@ function Header() {
               </a>
             </div>
           </nav>
-          <div
-            className={classNames('icon-menu', isMenuOpen && 'active')}
-            onClick={handleMenuButtonClick}>
-            <span></span>
-          </div>
+          {isMobile && (
+            <div
+              className={classNames('icon-menu', isMenuOpen && 'active')}
+              onClick={handleMenuButtonClick}>
+              <span></span>
+            </div>
+          )}
         </div>
       </div>
     </header>
