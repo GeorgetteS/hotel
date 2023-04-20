@@ -30,7 +30,7 @@ function Slider({ icons, images, quests, hover, gallery }) {
           <div className="hover-slider__icons">
             {icons.map((item, index) => {
               return (
-                <div className="hover-slider__icon" key={item.path}>
+                <div className="hover-slider__icon" key={index}>
                   <img src={item.path} alt="" />
                 </div>
               );

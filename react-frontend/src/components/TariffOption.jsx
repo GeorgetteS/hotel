@@ -30,6 +30,8 @@ const TariffOption = ({
 
   const [isListVisible, setListVisible] = useHide(refList);
 
+  const [isChosen, setChosen] = useState(false);
+
   useEffect(() => {
     if (!isOneRoom) {
       const roomList = ['отменить'];
@@ -46,18 +48,17 @@ const TariffOption = ({
         roomList.push(incredibleTrick);
       }
       setRoomList([...roomList]);
-      // setRoomListValues([...roomList]);
     }
   }, [countOfAvailiableRooms]);
 
   function defineOperation(string) {
     if (string === 'отменить') {
       deleteOption(deleteId);
-      // setRoomList([...roomListValues]);
+      setChosen(false);
       setPlaceholderValue(`Выбрать`);
     } else {
       returnOptionInfo(string[0]);
-      // setRoomList(['отменить']);
+      setChosen(true);
       const stringArr = string.split(' ');
       setPlaceholderValue(`${stringArr[0]} ${stringArr[1]}`);
     }
@@ -89,49 +90,58 @@ const TariffOption = ({
   }
 
   return (
-    <li className="tariffs__room">
-      <div className="tariffs__info">
-        {discount ? (
-          <div className="tariffs__price-sale">
-            <span className="tariffs__discount">- {discount}%</span>
-            <span className="tariffs__sale">{oldPrice} ₽</span>
+    <li className="tariffs__column">
+      <div className="tariffs__room">
+        <div className="tariffs__info">
+          {discount ? (
+            <div className="tariffs__price-sale">
+              <span className="tariffs__discount">- {discount}%</span>
+              <span className="tariffs__sale">{oldPrice} ₽</span>
+            </div>
+          ) : (
+            ''
+          )}
+
+          <div className="tariffs__info-row">
+            <div className="tariffs__quests">
+              {tariffIcons.map((icon, index) => {
+                return (
+                  <div className="tariffs__icon" key={index}>
+                    <img src={icon} alt="" />
+                  </div>
+                );
+              })}
+            </div>
+            <div className="tariffs__price">{price} ₽</div>
+          </div>
+        </div>
+        {isOneRoom ? (
+          <div className="tariff__button">
+            <BookingButton onCLickButton={returnOptionInfo} label={'Забронировать'} />
           </div>
         ) : (
-          ''
-        )}
-
-        <div className="tariffs__info-row">
-          <div className="tariffs__quests">
-            {tariffIcons.map((icon, index) => {
-              return (
-                <div className="tariffs__icon" key={index}>
-                  <img src={icon} alt="" />
-                </div>
-              );
-            })}
+          <div
+            className="tariffs__input "
+            onClick={() => setListVisible((prev) => !prev)}
+            ref={refList}>
+            <input readOnly placeholder={inputPlaceholderValue} />
+            <span className="triangle"></span>
+            {isListVisible && (
+              <div className="tariffs__pop-up">
+                <List
+                  isVisible={isListVisible}
+                  appear={'opacity'}
+                  items={roomList}
+                  setSelectedItem={(string) => defineOperation(string)}
+                />
+              </div>
+            )}
           </div>
-          <div className="tariffs__price">{price} ₽</div>
-        </div>
+        )}
       </div>
-      {isOneRoom ? (
-        <div className="tariff__button">
-          <BookingButton onCLickButton={returnOptionInfo} label={'Забронировать'} />
-        </div>
-      ) : (
-        <div
-          className="tariffs__input "
-          onClick={() => setListVisible((prev) => !prev)}
-          ref={refList}>
-          <input readOnly placeholder={inputPlaceholderValue} />
-          <span className="triangle"></span>
-          {isListVisible && (
-            <List
-              isVisible={isListVisible}
-              appear={'opacity'}
-              items={roomList}
-              setSelectedItem={(string) => defineOperation(string)}
-            />
-          )}
+      {isChosen && (
+        <div className="tariffs__btn">
+          <BookingButton label={'Забронировать'} />{' '}
         </div>
       )}
     </li>

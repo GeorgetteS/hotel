@@ -33,12 +33,6 @@ const BookingCheque = ({ goToNextStep }) => {
     );
   });
 
-  // const rooms = chequeRooms.map((room, index, rooms) => {
-  //   return (
-  //     <BookingChequeItem key={index} {...room} number={index + 1} isOneRoom={rooms.length === 1} />
-  //   );
-  // });
-
   return (
     <div className="selection-booking__menu menu-selection">
       <div className="menu-selection__body">

@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from 'react';
 
-const queries = ['(max-width: 767px)', '(min-width: 768px)'];
+const queries = ['(max-width: 767px)', '(max-width: 1030px)', '(min-width: 1030px)'];
 
 const useMatchMedia = () => {
   const mediaQueryLists = queries.map((query) => matchMedia(query));
@@ -17,7 +17,7 @@ const useMatchMedia = () => {
     return () => mediaQueryLists.forEach((mql) => mql.removeEventListener('change', handler));
   });
 
-  return ['isMobile', 'isDesktop'].reduce(
+  return ['isMobile', 'isTablet', 'isDesktop'].reduce(
     (acc, screen, index) => ({
       ...acc,
       [screen]: values[index],

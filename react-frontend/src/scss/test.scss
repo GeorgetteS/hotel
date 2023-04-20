@@ -1513,6 +1513,15 @@ main {
   }
 }
 
+@media (max-width: 767px) {
+  .room-info {
+    flex-direction: column;
+  }
+  .room-info__slider {
+    padding-bottom: 30%;
+  }
+}
+
 .parameters-room {
   display: flex;
   column-gap: 10px;
@@ -1743,7 +1752,7 @@ main {
   }
 
   &__panel {
-    flex: 0 0 40%;
+    flex: 0 0 45%;
   }
 
   &__nights {
@@ -1756,11 +1765,25 @@ main {
     flex-direction: column;
   }
 
+  &__column {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+
+    row-gap: 10px;
+
+    padding: 10px;
+  }
+
+  &__btn {
+    width: 148px;
+    align-self: end;
+  }
+
   &__room {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
     border-radius: 3px;
     column-gap: 10px;
 
@@ -1811,9 +1834,14 @@ main {
   }
 
   &__input {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
     position: relative;
     height: 37px;
     max-width: 150px;
+    width: 150px;
     flex: 1 1 auto;
     border: 1px solid #acb1c8;
     border-radius: 3px;
@@ -1842,6 +1870,20 @@ main {
     }
   }
 
+  &__pop-up {
+    @media (max-width: 1030px) {
+      position: absolute;
+      left: -100%;
+      top: 50px;
+    }
+    @media (max-width: 810px) {
+      left: 0;
+    }
+    @media (max-width: 400px) {
+      left: -20%;
+    }
+  }
+
   &__icon {
     width: 18px;
     height: 18px;
@@ -1856,6 +1898,38 @@ main {
       height: 100%;
       object-fit: contain;
     }
+  }
+}
+
+@media (max-width: 810px) {
+  .tariffs__row {
+    flex-direction: column;
+    row-gap: 10px;
+  }
+  .tariffs__room {
+    display: inline-flex;
+    width: auto;
+    justify-content: start;
+  }
+  .tariffs__nights {
+    text-align: left;
+  }
+  .tariffs__info {
+    order: 2;
+  }
+  .tariffs__input {
+    order: 1;
+  }
+  .tariffs__btn {
+    align-self: start;
+  }
+}
+
+@media (max-width: 400px) {
+  .tariffs__room {
+    flex-direction: column;
+    row-gap: 10px;
+    align-items: start;
   }
 }
 
@@ -2690,7 +2764,7 @@ main {
 
     padding: 15px 15px;
     display: flex;
-    column-gap: 5px;
+    column-gap: 10px;
 
     background: #f8f8f8;
     align-items: center;

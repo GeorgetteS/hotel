@@ -4,10 +4,12 @@ import BookingCheque from './BookingCheque';
 
 import SelectionRoom from './SelectionRoom';
 import ToggleShowButton from './ToggleShowButton';
+import useMatchMedia from '../hooks/useMatchMedia';
 
 const RoomsSelectionWhenMany = ({ rooms, onlyOne, goToNextStep }) => {
   const [showOne, setShowOne] = useState(false);
   const [roomArr, setRoomArr] = useState([]);
+  const { isTablet } = useMatchMedia();
 
   useEffect(() => {
     if (onlyOne) {
@@ -48,7 +50,7 @@ const RoomsSelectionWhenMany = ({ rooms, onlyOne, goToNextStep }) => {
             </div>
           </div>
         </div>
-        <BookingCheque goToNextStep={goToNextStep} />
+        {!isTablet && <BookingCheque goToNextStep={goToNextStep} />}
       </div>
     </div>
   );
