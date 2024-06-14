@@ -1,11 +1,11 @@
 import { Formik, Form, Field } from 'formik';
-
 import * as Yup from 'yup';
 
 import BookingButton from '../UI/BookingButton/BookingButton.jsx';
 
 import Input from '../UI/Input/Input';
 import PhoneInput from '../UI/Input/PhoneInput';
+import { fetchReservation } from '../api/postReservation.js';
 
 const phoneTest = /^\+7 \(\d{3}\) \d{3}-\d{3}$/;
 
@@ -39,20 +39,25 @@ const initialValues = {
   news: false,
   another: false,
   agreement: true,
-};
-
-const onSubmit = (values, { setSubmitting }) => {
-  // event.preventDefault();
-  setTimeout(() => {
-    alert(JSON.stringify(values, null, 2));
-    setSubmitting(false);
-  }, 400);
+  payment: '',
 };
 
 const ReservationForm = () => {
+  const onSubmit = async (values, { setSubmitting }) => {
+    try {
+      await fetchReservation(values);
+      // enqueueSnackbar('Бронирование успешно!', { variant: 'success', transitionDuration: 3000 });
+    } catch (error) {
+      // enqueueSnackbar('Произошла ошибка при бронировании.', { variant: 'error' });
+    } finally {
+      setSubmitting(false);
+    }
+
+    setSubmitting(false);
+  };
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-      {({ errors, touched }) => (
+      {({ errors, touched, setFieldValue }) => (
         <Form className="form">
           <div className="form__body">
             <div className="form__conclusion conclusion-form"></div>
@@ -129,46 +134,6 @@ const ReservationForm = () => {
               </div>
             </div>
 
-            {/* todo */}
-            {/* <div className="form__visitors visitors-form form-blok form-blok_dashed">
-              <h3 className="form__title">Информация о гостях</h3>
-              <div className="visitors-form__rooms-column">
-                <div className="visitors-form__body form-blok-border ">
-                  <div className="visitors-form__title">
-                    <b>Номер:</b> Стандартный с двумя кроватями. 1 взрослый
-                  </div>
-                  <div className="visitors-form__column">
-                    <div className="visitors-form__item">
-                      <div className="visitors-form__input-wrapper">
-                        <Input name="mainFamilyName" placeholder="Фамилия" type="text" />
-                      </div>
-                      <div className="visitors-form__input-wrapper">
-                        <Input name="mainFamilyName" placeholder="Фамилия" type="text" />
-                      </div>
-                      <div className="visitors-form__input-wrapper">
-                        <Input name="mainFamilyName" placeholder="Фамилия" type="text" />
-                      </div>
-                      <button className="visitors-form__delete">Удалить</button>
-                    </div>
-                    <div className="visitors-form__item">
-                      <div className="visitors-form__input-wrapper">
-                        <Input name="mainFamilyName" placeholder="Фамилия" type="text" />
-                      </div>
-                      <div className="visitors-form__input-wrapper">
-                        <Input name="mainFamilyName" placeholder="Фамилия" type="text" />
-                      </div>
-                      <div className="visitors-form__input-wrapper">
-                        <Input name="mainFamilyName" placeholder="Фамилия" type="text" />
-                      </div>
-                      <button className="visitors-form__delete">Удалить</button>
-                    </div>
-                  </div>
-                  <div className="add-item visitors-form__add-visitor">
-                    Указать следующего гостя
-                  </div>
-                </div>
-              </div>
-            </div> */}
             <div className="form__textarea textarea-form form-blok">
               <div className="form__title form__title_weight">Дополнительные комментарии</div>
               <textarea
@@ -222,7 +187,11 @@ const ReservationForm = () => {
                       <div className="payments-form__prepay payments-form__prepay_b">
                         Без предоплаты
                       </div>
-                      <BookingButton type={'submit'} label={'Забронировать'} />
+                      <BookingButton
+                        onCLickButton={() => setFieldValue('payment', 'nopay')}
+                        type={'submit'}
+                        label={'Забронировать'}
+                      />
                     </div>
                   </div>
                 </div>
@@ -266,7 +235,11 @@ const ReservationForm = () => {
                     <div className="payments-form__pay">
                       <div className="payments-form__prepay">Размер предоплаты</div>
                       <div className="payments-form__cost">4 240  ₽</div>
-                      <BookingButton type={'submit'} label={'Забронировать'} />
+                      <BookingButton
+                        onCLickButton={() => setFieldValue('payment', 'QR')}
+                        type={'submit'}
+                        label={'Забронировать'}
+                      />
                     </div>
                   </div>
                 </div>
@@ -319,7 +292,11 @@ const ReservationForm = () => {
                     <div className="payments-form__pay">
                       <div className="payments-form__prepay">Размер предоплаты</div>
                       <div className="payments-form__cost">4 240  ₽</div>
-                      <BookingButton type={'submit'} label={'Забронировать'} />
+                      <BookingButton
+                        onCLickButton={() => setFieldValue('payment', 'rus')}
+                        type={'submit'}
+                        label={'Забронировать'}
+                      />
                     </div>
                   </div>
                 </div>

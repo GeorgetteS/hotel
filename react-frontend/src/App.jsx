@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-
 import { createContext } from 'react';
 
 import Homepage from './pages/Homepage';
